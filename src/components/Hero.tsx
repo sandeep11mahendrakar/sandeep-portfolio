@@ -1,5 +1,5 @@
 import type { Profile } from "@/lib/profile";
-import { hasResume, isPlaceholder } from "@/lib/profile";
+import { hasResume } from "@/lib/profile";
 import Accent from "./Accent";
 import Reveal from "./Reveal";
 

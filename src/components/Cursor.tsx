@@ -12,7 +12,6 @@ const SIZES: Record<CursorMode, number> = {
 };
 
 export default function Cursor() {
-  const [enabled, setEnabled] = useState(false);
   const [visible, setVisible] = useState(false);
   const [mode, setMode] = useState<CursorMode>("default");
   const [label, setLabel] = useState<string | null>(null);
@@ -27,7 +26,6 @@ export default function Cursor() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || reduced) return;
 
-    setEnabled(true);
     document.documentElement.classList.add("has-custom-cursor");
 
     const onMove = (e: MouseEvent) => {
@@ -62,8 +60,6 @@ export default function Cursor() {
       document.documentElement.removeEventListener("mouseleave", onLeave);
     };
   }, [x, y]);
-
-  if (!enabled) return null;
 
   return (
     <motion.div

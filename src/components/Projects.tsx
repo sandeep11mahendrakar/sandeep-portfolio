@@ -9,18 +9,18 @@ function WorkRow({ project, fallbackIndex }: { project: Project; fallbackIndex: 
   const hasMedia = !!project.media;
 
   const inner = (
-    <div className="grid items-center gap-6 py-12 transition-all duration-300 group-hover/row:translate-x-2 md:grid-cols-[56px_minmax(0,1fr)_minmax(0,1.15fr)_72px] md:gap-10 md:py-16">
-      <span className="font-mono text-xs text-muted">
+    <div className="grid items-start gap-6 py-12 transition-transform duration-300 group-hover/row:translate-x-2 md:grid-cols-[56px_minmax(0,1fr)_minmax(0,1.15fr)_72px] md:gap-10 md:py-16">
+      <span className="font-mono text-xs text-muted md:pt-2.5">
         {projectNumber(project, fallbackIndex)}
       </span>
 
       <div className="relative min-w-0">
-        <h3 className="relative font-display text-4xl font-light leading-tight tracking-[-0.03em] text-ink/90 md:text-5xl">
+        <h3 className="relative inline-block font-display text-4xl font-light leading-tight tracking-[-0.03em] text-ink/90 md:text-5xl">
           {project.title}
           {linked && (
             <span
               aria-hidden
-              className="pointer-events-none absolute -top-5 right-0 hidden h-20 w-20 -translate-y-2 scale-75 items-center justify-center rounded-full bg-moss-deep/95 font-mono text-[9px] uppercase tracking-[0.16em] text-paper opacity-0 shadow-[0_10px_40px_rgba(100,124,87,0.35)] transition-all duration-300 group-hover/row:translate-y-0 group-hover/row:scale-100 group-hover/row:opacity-100 md:flex"
+              className="pointer-events-none absolute -right-3 top-1/2 hidden h-20 w-20 -translate-y-1/2 scale-75 items-center justify-center rounded-full bg-moss-deep/95 font-mono text-[9px] uppercase tracking-[0.16em] text-paper opacity-0 shadow-[0_10px_40px_rgba(100,124,87,0.35)] transition-all duration-300 group-hover/row:scale-100 group-hover/row:opacity-100 lg:-right-24 md:flex"
             >
               Open
             </span>
@@ -56,7 +56,7 @@ function WorkRow({ project, fallbackIndex }: { project: Project; fallbackIndex: 
         )}
       </div>
 
-      <p className="font-mono text-xs text-muted md:text-right">{project.year}</p>
+      <p className="font-mono text-xs text-muted md:pt-2.5 md:text-right">{project.year}</p>
     </div>
   );
 
@@ -68,7 +68,6 @@ function WorkRow({ project, fallbackIndex }: { project: Project; fallbackIndex: 
             href={project.link}
             target="_blank"
             rel="noreferrer noopener"
-            data-cursor="OPEN"
             className="block"
           >
             {inner}

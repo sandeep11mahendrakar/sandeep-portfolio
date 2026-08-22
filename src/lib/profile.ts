@@ -18,9 +18,14 @@ export interface Hero {
   resumePath: string;
 }
 
+export interface SkillItem {
+  name: string;
+  icon?: string;
+}
+
 export interface StackCategory {
   category: string;
-  items: string[];
+  items: SkillItem[];
 }
 
 export type MediaKind = "image" | "gif" | "video";
@@ -107,6 +112,21 @@ const dictArr = (v: unknown): Dict[] =>
         (x): x is Dict => typeof x === "object" && x !== null && !Array.isArray(x)
       )
     : [];
+
+function parseSkillItems(v: unknown): SkillItem[] {
+  if (!Array.isArray(v)) return [];
+  const out: SkillItem[] = [];
+  for (const entry of v) {
+    if (typeof entry === "string" && entry.trim().length > 0) {
+      out.push({ name: entry.trim() });
+    } else if (typeof entry === "object" && entry !== null && !Array.isArray(entry)) {
+      const d = entry as Dict;
+      const name = str(d.name);
+      if (name) out.push({ name, icon: str(d.icon) });
+    }
+  }
+  return out;
+}
 
 export function isPlaceholder(value?: string): boolean {
   return !!value && /^\[ADD/i.test(value.trim());
@@ -242,7 +262,7 @@ export function getProfile(): Profile {
     stack: dictArr(d.stack)
       .map((c) => ({
         category: str(c.category) ?? "",
-        items: strArr(c.items),
+        items: parseSkillItems(c.items),
       }))
       .filter((c) => c.category.length > 0 && c.items.length > 0),
     featuredProject: str(d.featuredProject),
