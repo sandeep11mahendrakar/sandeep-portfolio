@@ -1,0 +1,55 @@
+identity:
+  name: "Sandeep Mahendrakar"
+  roles: ["AI/ML Engineer", "Software Engineer"]
+  location: "Bengaluru, India"
+  university: "PES University · B.Tech Computer Science"
+  email: "[ADD EMAIL]"
+
+hero:
+  headline: "I build intelligent systems end to end."
+  subline: >-
+    Computer Science student at PES University, Bengaluru, working across AI/ML,
+    software engineering, and Linux systems.
+  github: "[ADD GITHUB URL]"
+  linkedin: "[ADD LINKEDIN URL]"
+  resumePath: "/resume.pdf"
+
+about:
+  paragraphs:
+    - >-
+      Interested in AI/ML engineering and the systems underneath it — Linux,
+      GPUs, and the infrastructure that turns models into working software.
+    - "[ADD DETAILS — what you build, what you are exploring, how you work.]"
+
+stack:
+  - category: "AI / ML"
+    items: ["[ADD ITEMS]"]
+  - category: "Software"
+    items: ["[ADD ITEMS]"]
+  - category: "Systems / Linux"
+    items: ["[ADD ITEMS]"]
+  - category: "Tools"
+    items: ["[ADD ITEMS]"]
+
+featuredProject: "vision-ui-testing"
+
+projects:
+  - slug: "vision-ui-testing"
+    number: 01
+    title: "Autonomous Vision-Based UI Testing System"
+    year: "[ADD YEAR]"
+    summary: "[ADD ONE-SENTENCE TECHNICAL DESCRIPTION]"
+    details: "[ADD PROJECT DETAILS — approach, architecture, challenges solved.]"
+    stack: ["[ADD STACK ITEMS]"]
+    link: "[ADD REPO OR LIVE URL]"
+  - slug: "sentiment-analysis"
+    title: "Multi-Aspect Sentiment Analysis with Explainability"
+    year: "[ADD YEAR]"
+    summary: "[ADD ONE-SENTENCE TECHNICAL DESCRIPTION]"
+    details: "[ADD PROJECT DETAILS — approach, architecture, challenges solved.]"
+    stack: ["[ADD STACK ITEMS]"]
+    link: ""
+
+experience: []
+
+writing: []
