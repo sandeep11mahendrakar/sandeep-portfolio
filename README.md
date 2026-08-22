@@ -21,6 +21,7 @@ Open http://localhost:3000
    - `about` — paragraphs
    - `stack` — categorized tool lists
    - `projects` — add/remove entries; the project whose `slug` matches `featuredProject` is shown near the top with special treatment
+     - `image: "/images/my-screenshot.png"` (optional) — drop the file into `public/images/`; the featured project shows it large, list projects show a small thumbnail. Omit or delete the file and images hide automatically.
    - `experience`, `writing` — leave as `[]` to hide those sections entirely
 2. Drop your resume as `public/resume.pdf` — the "Résumé" CTA appears automatically. Delete the file and it hides again.
 3. Any value starting with `[ADD ...]` renders in muted italics as an obvious placeholder. Replace it with real text. Do not invent achievements.

@@ -32,6 +32,7 @@ export interface Project {
   details?: string;
   stack: string[];
   link?: string;
+  image?: string;
 }
 
 export interface ExperienceEntry {
@@ -144,6 +145,7 @@ export function getProfile(): Profile {
         details: str(p.details),
         stack: strArr(p.stack),
         link: str(p.link),
+        image: str(p.image),
       }))
       .filter((p) => p.title.length > 0 && !isPlaceholder(p.title)),
     experience: dictArr(d.experience)
@@ -165,14 +167,19 @@ export function getProfile(): Profile {
   };
 }
 
-export function hasResume(resumePath = "/resume.pdf"): boolean {
+export function hasPublicFile(publicPath?: string): boolean {
+  if (!publicPath || isPlaceholder(publicPath)) return false;
   try {
     return fs.existsSync(
-      path.join(process.cwd(), "public", resumePath.replace(/^\//, ""))
+      path.join(process.cwd(), "public", publicPath.replace(/^\//, ""))
     );
   } catch {
     return false;
   }
+}
+
+export function hasResume(resumePath = "/resume.pdf"): boolean {
+  return hasPublicFile(resumePath);
 }
 
 export function projectNumber(project: Project, fallbackIndex: number): string {

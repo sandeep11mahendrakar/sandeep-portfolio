@@ -1,16 +1,36 @@
+import Image from "next/image";
 import type { Project } from "@/lib/profile";
-import { isPlaceholder, projectNumber } from "@/lib/profile";
+import { hasPublicFile, isPlaceholder, projectNumber } from "@/lib/profile";
 import FadeIn from "./FadeIn";
 import Section from "./Section";
 
 function ProjectRow({ project, fallbackIndex }: { project: Project; fallbackIndex: number }) {
   const linked = !!project.link && !isPlaceholder(project.link);
+  const imageAvailable = hasPublicFile(project.image);
 
   const body = (
-    <div className="grid gap-3 py-10 transition-transform duration-300 group-hover:translate-x-2 md:grid-cols-[72px_1fr_100px] md:gap-8 md:py-12">
+    <div
+      className={`grid gap-3 py-10 transition-transform duration-300 group-hover:translate-x-2 md:py-12 ${
+        imageAvailable
+          ? "md:grid-cols-[72px_180px_1fr_90px] md:gap-8"
+          : "gap-4 md:grid-cols-[72px_1fr_100px] md:gap-8"
+      }`}
+    >
       <span className="pt-1.5 font-mono text-sm text-muted">
         {projectNumber(project, fallbackIndex)}
       </span>
+
+      {imageAvailable && project.image && (
+        <div className="hidden overflow-hidden rounded-md border border-line md:block">
+          <Image
+            src={project.image}
+            alt=""
+            width={360}
+            height={225}
+            className="h-auto w-full object-cover"
+          />
+        </div>
+      )}
 
       <div>
         <h3 className="font-serif text-2xl leading-snug tracking-tight md:text-3xl">

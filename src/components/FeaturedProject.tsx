@@ -1,5 +1,6 @@
+import Image from "next/image";
 import type { Project } from "@/lib/profile";
-import { isPlaceholder, projectNumber } from "@/lib/profile";
+import { hasPublicFile, isPlaceholder, projectNumber } from "@/lib/profile";
 import ArrowLink from "./ArrowLink";
 import FadeIn from "./FadeIn";
 import Section from "./Section";
@@ -12,6 +13,7 @@ export default function FeaturedProject({
   index: string;
 }) {
   const linked = !!project.link && !isPlaceholder(project.link);
+  const imageAvailable = hasPublicFile(project.image);
 
   return (
     <Section id="work" index={index} title="Featured Project">
@@ -22,6 +24,19 @@ export default function FeaturedProject({
           </span>
 
           <div>
+            {imageAvailable && project.image && (
+              <div className="mb-10 overflow-hidden rounded-lg border border-line">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  width={1280}
+                  height={720}
+                  priority
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            )}
+
             <h2 className="font-serif text-3xl leading-tight tracking-tight md:text-5xl">
               {linked ? (
                 <a
