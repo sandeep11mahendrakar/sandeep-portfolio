@@ -8,8 +8,8 @@ identity:
   email: "sandeepmahendrakar11@gmail.com"
 
 hero:
-  headline: "I build intelligent systems end to end."
-  subline: "Final-year Computer Science student at PES University working across NLP, computer vision, UI automation, and LLM-assisted test generation."
+  headline: "I build intelligent systems at the intersection of *AI/ML,* software engineering, and *automation.*"
+  subline: "Currently working across NLP, computer vision, UI automation, and LLM-assisted test generation."
   github: "https://github.com/sandeep11mahendrakar"
   linkedin: "https://www.linkedin.com/in/sandeep-mahindrakar-336b972b9/"
   resumePath: "/resume.pdf"
@@ -71,6 +71,10 @@ projects:
       - "Gemini API"
       - "Grok API"
     link: "https://github.com/sandeep11mahendrakar/capstone"
+    media:
+      type: "image"
+      src: "/projects/vision-ui-testing/preview.png"
+      alt: "Vision pipeline detecting and labeling UI elements on a live web page"
 
   - slug: "sentiment-analysis"
     number: 02
@@ -89,6 +93,32 @@ projects:
       - "Streamlit"
     link: "https://multi-aspect-sentiment-analysis-with-explainability-srgnqk7xcv.streamlit.app/"
 
+socials:
+  - name: "GitHub"
+    label: "GITHUB"
+    url: "https://github.com/sandeep11mahendrakar"
+    type: "external"
+  - name: "LinkedIn"
+    label: "LINKEDIN"
+    url: "https://www.linkedin.com/in/sandeep-mahindrakar-336b972b9/"
+    type: "external"
+  - name: "Email"
+    label: "EMAIL"
+    url: "mailto:sandeepmahendrakar11@gmail.com"
+    type: "email"
+
 experience: []
 
 writing: []
+
+navigation:
+  - label: "HOME"
+    target: "home"
+  - label: "ABOUT"
+    target: "about"
+  - label: "SKILLS"
+    target: "skills"
+  - label: "WORK"
+    target: "work"
+  - label: "CONTACT"
+    target: "contact"

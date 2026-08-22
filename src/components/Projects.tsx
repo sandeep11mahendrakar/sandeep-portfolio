@@ -1,72 +1,53 @@
-import Image from "next/image";
-import type { Project } from "@/lib/profile";
-import { hasPublicFile, isPlaceholder, projectNumber } from "@/lib/profile";
-import FadeIn from "./FadeIn";
+﻿import type { Project } from "@/lib/profile";
+import { isPlaceholder, projectNumber } from "@/lib/profile";
+import MediaRenderer from "./MediaRenderer";
+import Reveal from "./Reveal";
 import Section from "./Section";
 
-function ProjectRow({ project, fallbackIndex }: { project: Project; fallbackIndex: number }) {
+function WorkRow({ project, fallbackIndex }: { project: Project; fallbackIndex: number }) {
   const linked = !!project.link && !isPlaceholder(project.link);
-  const imageAvailable = hasPublicFile(project.image);
+  const hasMedia = !!project.media;
 
-  const body = (
-    <div
-      className={`grid gap-3 py-10 transition-transform duration-300 group-hover:translate-x-2 md:py-12 ${
-        imageAvailable
-          ? "md:grid-cols-[72px_180px_1fr_90px] md:gap-8"
-          : "gap-4 md:grid-cols-[72px_1fr_100px] md:gap-8"
-      }`}
-    >
-      <span className="pt-1.5 font-mono text-sm text-muted">
+  const inner = (
+    <div className="grid items-center gap-6 py-12 transition-all duration-300 group-hover/row:translate-x-2 md:grid-cols-[56px_minmax(0,1fr)_minmax(0,1.15fr)_72px] md:gap-10 md:py-16">
+      <span className="font-mono text-xs text-muted">
         {projectNumber(project, fallbackIndex)}
       </span>
 
-      {imageAvailable && project.image && (
-        <div className="hidden overflow-hidden rounded-md border border-line md:block">
-          <Image
-            src={project.image}
-            alt=""
-            width={360}
-            height={225}
-            className="h-auto w-full object-cover"
-          />
-        </div>
-      )}
+      <div className="relative min-w-0">
+        <h3 className="relative font-display text-4xl font-light leading-tight tracking-[-0.03em] text-ink/90 md:text-5xl">
+          {project.title}
+          {linked && (
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -top-5 right-0 hidden h-20 w-20 -translate-y-2 scale-75 items-center justify-center rounded-full bg-moss-deep/95 font-mono text-[9px] uppercase tracking-[0.16em] text-paper opacity-0 shadow-[0_10px_40px_rgba(100,124,87,0.35)] transition-all duration-300 group-hover/row:translate-y-0 group-hover/row:scale-100 group-hover/row:opacity-100 md:flex"
+            >
+              Open
+            </span>
+          )}
+        </h3>
+      </div>
 
       <div>
-        <h3 className="font-serif text-2xl leading-snug tracking-tight md:text-3xl">
-          {project.title}
-        </h3>
-
-        {project.summary && (
-          <p
-            className={`mt-3 max-w-2xl leading-relaxed ${
-              isPlaceholder(project.summary) ? "italic text-muted" : "text-ink/80"
-            }`}
-          >
-            {project.summary}
-          </p>
+        {hasMedia && (
+          <div className="mb-5 overflow-hidden rounded-xl border border-line md:hidden">
+            <MediaRenderer media={project.media} showPlaceholder={false} />
+          </div>
         )}
 
-        {project.details && (
-          <p
-            className={`mt-2 max-w-2xl text-sm leading-relaxed ${
-              isPlaceholder(project.details)
-                ? "italic text-muted/80"
-                : "text-muted"
-            }`}
-          >
-            {project.details}
-          </p>
+        {project.summary && (
+          <p className="text-[15px] leading-relaxed text-ink/75">{project.summary}</p>
+        )}
+        {project.details && !isPlaceholder(project.details) && (
+          <p className="mt-2 text-sm leading-relaxed text-muted">{project.details}</p>
         )}
 
         {project.stack.length > 0 && (
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {project.stack.map((item) => (
+          <ul className="mt-4 flex flex-wrap gap-1.5">
+            {project.stack.slice(0, 5).map((item) => (
               <li
                 key={item}
-                className={`rounded-full border border-line px-3 py-1 text-xs ${
-                  isPlaceholder(item) ? "italic text-muted" : "text-muted"
-                }`}
+                className="rounded-full border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-muted"
               >
                 {item}
               </li>
@@ -75,61 +56,41 @@ function ProjectRow({ project, fallbackIndex }: { project: Project; fallbackInde
         )}
       </div>
 
-      <div className="flex items-baseline justify-start gap-2 md:justify-end">
-        {project.year && (
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">
-            {project.year}
-          </span>
-        )}
-        {linked && (
-          <span
-            aria-hidden
-            className="inline-block text-muted opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          >
-            ↗
-          </span>
-        )}
-      </div>
+      <p className="font-mono text-xs text-muted md:text-right">{project.year}</p>
     </div>
   );
 
-  if (!linked) {
-    return <div className="group border-t border-line last:border-b">{body}</div>;
-  }
-
   return (
-    <div className="group border-t border-line last:border-b">
-      <a href={project.link} target="_blank" rel="noreferrer noopener" className="block">
-        {body}
-      </a>
-    </div>
+    <Reveal>
+      <div className="group/row border-t border-line last:border-b">
+        {linked ? (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noreferrer noopener"
+            data-cursor="OPEN"
+            className="block"
+          >
+            {inner}
+          </a>
+        ) : (
+          inner
+        )}
+      </div>
+    </Reveal>
   );
 }
 
-export default function Projects({
-  projects,
-  index,
-  numberOffset = 0,
-}: {
-  projects: Project[];
-  index: string;
-  numberOffset?: number;
-}) {
+export default function Projects({ projects }: { projects: Project[] }) {
   if (projects.length === 0) return null;
 
   return (
-    <Section id="projects" index={index} title="Projects">
-      <FadeIn>
-        <div>
-          {projects.map((project, i) => (
-            <ProjectRow
-              key={project.slug}
-              project={project}
-              fallbackIndex={numberOffset + i}
-            />
-          ))}
-        </div>
-      </FadeIn>
+    <Section id="work" eyebrow="Selected Projects" title="Some of My *Work*">
+      <div>
+        {projects.map((project, i) => (
+          <WorkRow key={project.slug} project={project} fallbackIndex={i} />
+        ))}
+      </div>
     </Section>
   );
 }

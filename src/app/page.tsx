@@ -1,50 +1,60 @@
 import About from "@/components/About";
 import Contact from "@/components/Contact";
-import Experience from "@/components/Experience";
-import FeaturedProject from "@/components/FeaturedProject";
+import Cursor from "@/components/Cursor";
+import FeaturedBand from "@/components/FeaturedBand";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import Nav, { type NavLink } from "@/components/Nav";
+import Nav from "@/components/Nav";
 import Projects from "@/components/Projects";
+import SectionDots from "@/components/SectionDots";
 import Stack from "@/components/Stack";
+import type { NavLink } from "@/components/types";
 import Writing from "@/components/Writing";
-import { getProfile, hasResume } from "@/lib/profile";
+import { getProfile } from "@/lib/profile";
 
 export default function Home() {
   const profile = getProfile();
-  const resumeAvailable = hasResume(profile.hero.resumePath);
 
   const featured = profile.projects.find(
     (project) => project.slug === profile.featuredProject
   );
-  const listedProjects = featured
-    ? profile.projects.filter((project) => project.slug !== featured.slug)
-    : profile.projects;
-  const numberOffset = featured
-    ? profile.projects.findIndex((project) => project.slug === featured.slug)
-    : 0;
 
-  const links: NavLink[] = [
-    ...(featured ? [{ label: "Work", href: "#work" }] : []),
+  const sectionExists: Record<string, boolean> = {
+    top: true,
+    home: true,
+    about: profile.about.paragraphs.length > 0,
+    skills: profile.stack.length > 0,
+    work: profile.projects.length > 0,
+    writing: profile.writing.length > 0,
+    featured: !!featured,
+    contact: true,
+  };
+
+  const fallbackLinks: NavLink[] = [
+    { label: "Home", href: "#top" },
     { label: "About", href: "#about" },
-    ...(profile.stack.length > 0 ? [{ label: "Stack", href: "#stack" }] : []),
-    ...(listedProjects.length > 0
-      ? [{ label: "Projects", href: "#projects" }]
-      : []),
-    ...(profile.experience.length > 0
-      ? [{ label: "Experience", href: "#experience" }]
-      : []),
-    ...(profile.writing.length > 0
-      ? [{ label: "Writing", href: "#writing" }]
-      : []),
+    ...(profile.stack.length > 0 ? [{ label: "Skills", href: "#skills" }] : []),
+    ...(profile.projects.length > 0 ? [{ label: "Work", href: "#work" }] : []),
+    ...(profile.writing.length > 0 ? [{ label: "Writing", href: "#writing" }] : []),
     { label: "Contact", href: "#contact" },
   ];
 
-  let sectionNumber = 0;
-  const nextSection = () => String(++sectionNumber).padStart(2, "0");
+  const links: NavLink[] =
+    profile.navigation && profile.navigation.length > 0
+      ? profile.navigation
+          .filter((item) => sectionExists[item.target] !== false)
+          .map((item) => ({
+            label: item.label,
+            href: item.target === "home" ? "#top" : `#${item.target}`,
+          }))
+      : fallbackLinks;
+
+  const dotIds = Object.keys(sectionExists).filter(
+    (id) => !["home", "featured"].includes(id) && sectionExists[id]
+  );
 
   return (
-    <div id="top" className="min-h-dvh">
+    <div className="relative">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-paper focus:px-4 focus:py-2 focus:text-sm"
@@ -53,42 +63,26 @@ export default function Home() {
       </a>
 
       <Nav name={profile.identity.name} links={links} />
+      <SectionDots ids={dotIds} />
+      <Cursor />
 
       <main id="main">
-        <Hero profile={profile} resumeAvailable={resumeAvailable} />
+        <Hero profile={profile} />
 
-        {featured && (
-          <FeaturedProject project={featured} index={nextSection()} />
-        )}
+        {featured && <FeaturedBand project={featured} />}
 
-        {profile.about.paragraphs.length > 0 && (
-          <About about={profile.about} index={nextSection()} />
-        )}
+        <About profile={profile} />
 
-        {profile.stack.length > 0 && (
-          <Stack stack={profile.stack} index={nextSection()} />
-        )}
+        {profile.stack.length > 0 && <Stack stack={profile.stack} />}
 
-        {listedProjects.length > 0 && (
-          <Projects
-            projects={listedProjects}
-            index={nextSection()}
-            numberOffset={numberOffset}
-          />
-        )}
+        <Projects projects={profile.projects} />
 
-        {profile.experience.length > 0 && (
-          <Experience entries={profile.experience} index={nextSection()} />
-        )}
+        <Writing entries={profile.writing} />
 
-        {profile.writing.length > 0 && (
-          <Writing entries={profile.writing} index={nextSection()} />
-        )}
-
-        <Contact profile={profile} index={nextSection()} />
+        <Contact profile={profile} />
       </main>
 
-      <Footer name={profile.identity.name} />
+      <Footer profile={profile} />
     </div>
   );
 }

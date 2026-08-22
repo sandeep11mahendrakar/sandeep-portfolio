@@ -1,31 +1,44 @@
 import type { ReactNode } from "react";
-import FadeIn from "./FadeIn";
+import Accent from "./Accent";
+import Reveal from "./Reveal";
 
 export default function Section({
   id,
-  index,
+  eyebrow,
   title,
+  heading,
   children,
 }: {
   id: string;
-  index: string;
-  title: string;
+  eyebrow?: string;
+  title?: string;
+  heading?: ReactNode;
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-16 border-t border-line">
-      <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
-        <FadeIn>
-          <p className="mb-12 text-xs uppercase tracking-[0.25em] text-muted">
-            <span>{index}</span>
-            <span aria-hidden className="mx-2">
-              —
-            </span>
-            {title}
-          </p>
-        </FadeIn>
-        {children}
-      </div>
+    <section id={id} className="scroll-mt-28 px-6 py-20 md:px-12 md:py-32">
+      {(eyebrow || title || heading) && (
+        <div className="mb-12 md:mb-20">
+          {eyebrow && (
+            <Reveal>
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-moss-deep md:text-xs">
+                {eyebrow}
+              </p>
+            </Reveal>
+          )}
+          {(title || heading) && (
+            <Reveal delay={0.06}>
+              <h2 className="mt-4 font-display text-[clamp(2.25rem,5.5vw,4.25rem)] font-light leading-[1.05] tracking-[-0.03em] text-ink">
+                {heading ?? (title ? <Accent text={title} /> : null)}
+              </h2>
+            </Reveal>
+          )}
+          <Reveal delay={0.1}>
+            <hr className="mt-8 border-t border-line" />
+          </Reveal>
+        </div>
+      )}
+      {children}
     </section>
   );
 }

@@ -1,96 +1,93 @@
 import type { Profile } from "@/lib/profile";
-import { isPlaceholder } from "@/lib/profile";
-import ArrowLink from "./ArrowLink";
-import FadeIn from "./FadeIn";
+import { hasResume, isPlaceholder } from "@/lib/profile";
+import Accent from "./Accent";
+import Reveal from "./Reveal";
 
-export default function Hero({
-  profile,
-  resumeAvailable,
-}: {
-  profile: Profile;
-  resumeAvailable: boolean;
-}) {
+export default function Hero({ profile }: { profile: Profile }) {
   const { identity, hero } = profile;
+  const resumeAvailable = hasResume(hero.resumePath);
 
-  const metaParts = [
-    identity.location,
-    identity.university,
-    identity.roles.join(" / "),
-  ].filter(Boolean);
+  const universityParts = (identity.university ?? "").split("·").map((s) => s.trim());
+  const firstName = identity.name.split(" ")[0];
 
   return (
-    <header className="relative">
-      <div className="mx-auto max-w-5xl px-6 pb-24 pt-36 md:pb-32 md:pt-48">
-        {metaParts.length > 0 && (
-          <FadeIn>
-            <p className="text-xs uppercase tracking-[0.25em] text-muted md:text-sm">
-              {metaParts.map((part, i) => (
-                <span key={part}>
-                  {i > 0 && (
-                    <span aria-hidden className="mx-3 text-line">
-                      ·
-                    </span>
-                  )}
-                  {part}
-                </span>
+    <section
+      id="top"
+      className="relative flex min-h-[86svh] flex-col justify-end px-6 pb-14 pt-32 md:px-12 md:pb-20"
+    >
+      <div>
+        <Reveal variant="mask">
+          <div className="flex flex-wrap items-start justify-between gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted md:text-xs">
+            <div>
+              <p className="flex items-center gap-2.5">
+                <span aria-hidden className="inline-block h-2 w-2 rounded-full bg-clay" />
+                {identity.location}
+              </p>
+              <p className="mt-2.5">~ {identity.roles.join(", ")}</p>
+            </div>
+            <div className="text-right leading-relaxed">
+              <p className="text-ink/80">{identity.name}</p>
+              {universityParts.map((part) => (
+                <p key={part}>{part}</p>
               ))}
+            </div>
+          </div>
+        </Reveal>
+
+        <h1 className="mt-8 font-display text-[clamp(4rem,14vw,11.5rem)] font-light leading-[0.92] tracking-[-0.045em]">
+          {firstName}
+        </h1>
+
+        {(hero.headline || hero.subline) && (
+          <Reveal delay={0.15}>
+            <p className="mt-9 max-w-xl text-lg leading-relaxed text-ink/85 md:text-xl">
+              {hero.headline && <Accent text={hero.headline} />}{" "}
+              {hero.subline && <Accent text={hero.subline} />}
             </p>
-          </FadeIn>
+          </Reveal>
         )}
 
-        <FadeIn delay={0.06}>
-          <h1 className="mt-8 font-serif text-[clamp(2.75rem,9vw,6.5rem)] leading-[1.02] tracking-tight">
-            {identity.name}
-          </h1>
-        </FadeIn>
+        <Reveal delay={0.22}>
+          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+            {profile.socials.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target={social.type === "external" ? "_blank" : undefined}
+                rel={social.type === "external" ? "noreferrer noopener" : undefined}
+                data-cursor={social.type === "email" ? "EMAIL" : "LINK"}
+                className="font-mono text-xs uppercase tracking-[0.18em] text-ink/80 transition-colors hover:text-moss-deep"
+              >
+                {social.label}
+              </a>
+            ))}
+          </div>
+        </Reveal>
 
-        {hero.headline && (
-          <FadeIn delay={0.12}>
-            <p className="mt-6 max-w-2xl font-serif text-2xl italic leading-snug text-ink/85 md:text-3xl">
-              {hero.headline}
-            </p>
-          </FadeIn>
-        )}
-
-        {hero.subline && (
-          <FadeIn delay={0.18}>
-            <p
-              className={`mt-6 max-w-xl leading-relaxed text-muted ${
-                hero.headline ? "text-base" : "text-lg"
-              }`}
-            >
-              {hero.subline}
-            </p>
-          </FadeIn>
-        )}
-
-        <FadeIn delay={0.24}>
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-sm font-medium">
-            {hero.github && !isPlaceholder(hero.github) && (
-              <ArrowLink href={hero.github}>GitHub</ArrowLink>
-            )}
-            {hero.linkedin && !isPlaceholder(hero.linkedin) && (
-              <ArrowLink href={hero.linkedin}>LinkedIn</ArrowLink>
-            )}
-            {resumeAvailable && (
+        {resumeAvailable && (
+          <Reveal delay={0.28}>
+            <div className="mt-8 flex flex-wrap items-center gap-3 pb-2">
               <a
                 href={hero.resumePath}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group inline-flex items-baseline gap-1.5 transition-colors hover:text-accent"
+                data-cursor="OPEN"
+                className="rounded-full bg-ink px-6 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-paper transition-transform duration-200 hover:-translate-y-0.5"
               >
-                Résumé
-                <span
-                  aria-hidden
-                  className="inline-block text-[0.85em] transition-transform duration-200 group-hover:translate-y-0.5"
-                >
-                  ↓
-                </span>
+                View Résumé
               </a>
-            )}
-          </div>
-        </FadeIn>
+              <a
+                href={hero.resumePath}
+                download
+                data-cursor="DOWNLOAD"
+                className="rounded-full border border-line px-6 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink/80 transition-colors duration-200 hover:border-moss hover:text-moss-deep"
+              >
+                Download
+              </a>
+            </div>
+          </Reveal>
+        )}
       </div>
-    </header>
+    </section>
   );
 }

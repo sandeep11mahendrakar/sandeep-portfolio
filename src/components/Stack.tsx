@@ -1,41 +1,37 @@
 import type { StackCategory } from "@/lib/profile";
-import { isPlaceholder } from "@/lib/profile";
-import FadeIn from "./FadeIn";
+import Reveal from "./Reveal";
 import Section from "./Section";
 
 export default function Stack({
   stack,
-  index,
 }: {
   stack: StackCategory[];
-  index: string;
 }) {
   if (stack.length === 0) return null;
 
   return (
-    <Section id="stack" index={index} title="Stack">
-      <dl>
+    <Section id="skills" eyebrow="Toolbox" title="What I *work* with">
+      <div className="grid grid-cols-1 border-t border-l border-line sm:grid-cols-2 xl:grid-cols-4">
         {stack.map((group, i) => (
-          <FadeIn key={group.category} delay={0.04 * i}>
-            <div
-              className={`grid gap-2 py-5 md:grid-cols-[220px_1fr] md:gap-8 ${
-                i > 0 ? "border-t border-line" : ""
-              }`}
-            >
-              <dt className="pt-0.5 text-sm font-medium">{group.category}</dt>
-              <dd
-                className={`leading-loose ${
-                  group.items.some((item) => isPlaceholder(item))
-                    ? "italic text-muted"
-                    : "text-muted"
-                }`}
-              >
-                {group.items.join("   ·   ")}
-              </dd>
+          <Reveal key={group.category} delay={0.05 * i} className="h-full">
+            <div className="-ml-px -mt-px h-full border-b border-r border-line p-6 transition-colors duration-300 hover:bg-white/35 md:p-7">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-moss-deep">
+                {group.category}
+              </p>
+              <ul className="mt-5 flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-full border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.06em] text-muted transition-colors duration-200 hover:border-moss hover:text-ink"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </FadeIn>
+          </Reveal>
         ))}
-      </dl>
+      </div>
     </Section>
   );
 }

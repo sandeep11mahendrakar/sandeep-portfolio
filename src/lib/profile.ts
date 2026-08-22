@@ -23,6 +23,19 @@ export interface StackCategory {
   items: string[];
 }
 
+export type MediaKind = "image" | "gif" | "video";
+
+export interface ProjectMedia {
+  type: MediaKind;
+  src: string;
+  alt?: string;
+  poster?: string;
+  controls: boolean;
+  autoplay: boolean;
+  muted: boolean;
+  loop: boolean;
+}
+
 export interface Project {
   slug: string;
   number?: number;
@@ -32,7 +45,19 @@ export interface Project {
   details?: string;
   stack: string[];
   link?: string;
-  image?: string;
+  media?: ProjectMedia;
+}
+
+export interface SocialLink {
+  name: string;
+  label: string;
+  url: string;
+  type: "external" | "email";
+}
+
+export interface NavigationItem {
+  label: string;
+  target: string;
 }
 
 export interface ExperienceEntry {
@@ -58,6 +83,8 @@ export interface Profile {
   projects: Project[];
   experience: ExperienceEntry[];
   writing: WritingEntry[];
+  socials: SocialLink[];
+  navigation?: NavigationItem[];
 }
 
 type Dict = Record<string, unknown>;
@@ -93,7 +120,88 @@ const EMPTY_PROFILE: Profile = {
   projects: [],
   experience: [],
   writing: [],
+  socials: [],
 };
+
+const MEDIA_TYPES: MediaKind[] = ["image", "gif", "video"];
+
+function parseMedia(p: Dict, slug: string): ProjectMedia | undefined {
+  const legacy = str(p.image);
+  const raw = (typeof p.media === "object" && p.media !== null ? p.media : null) as Dict | null;
+
+  if (!raw && !legacy) return undefined;
+  if (!raw) {
+    return {
+      type: "image",
+      src: legacy as string,
+      alt: undefined,
+      controls: false,
+      autoplay: false,
+      muted: true,
+      loop: false,
+    };
+  }
+
+  const src = str(raw.src);
+  const type = str(raw.type)?.toLowerCase();
+  if (!src || !type) {
+    console.warn(`[profile] project "${slug}": media requires "type" and "src" — ignored.`);
+    return undefined;
+  }
+  if (!MEDIA_TYPES.includes(type as MediaKind)) {
+    console.warn(
+      `[profile] project "${slug}": unknown media type "${type}" (expected image|gif|video) — ignored.`
+    );
+    return undefined;
+  }
+  if (isPlaceholder(src)) return undefined;
+
+  return {
+    type: type as MediaKind,
+    src,
+    alt: str(raw.alt),
+    poster: str(raw.poster),
+    controls: raw.controls === true,
+    autoplay: raw.autoplay !== false,
+    muted: raw.muted !== false,
+    loop: raw.loop !== false,
+  };
+}
+
+function parseSocials(d: Dict, hero: Hero, email?: string): SocialLink[] {
+  const socials = dictArr(d.socials)
+    .map((s, i) => {
+      const url = str(s.url);
+      const name = str(s.name);
+      if (!url || !name || isPlaceholder(url)) {
+        if (name || url) {
+          console.warn(`[profile] socials[${i}]: missing ${!url ? "url" : "name"} — ignored.`);
+        }
+        return undefined;
+      }
+      return {
+        name,
+        label: str(s.label) ?? name.toUpperCase(),
+        url,
+        type: str(s.type)?.toLowerCase() === "email" ? ("email" as const) : ("external" as const),
+      };
+    })
+    .filter((s): s is SocialLink => s !== undefined);
+
+  if (socials.length > 0) return socials;
+
+  const fallback: SocialLink[] = [];
+  if (hero.github && !isPlaceholder(hero.github)) {
+    fallback.push({ name: "GitHub", label: "GITHUB", url: hero.github, type: "external" });
+  }
+  if (hero.linkedin && !isPlaceholder(hero.linkedin)) {
+    fallback.push({ name: "LinkedIn", label: "LINKEDIN", url: hero.linkedin, type: "external" });
+  }
+  if (email && !isPlaceholder(email)) {
+    fallback.push({ name: "Email", label: "EMAIL", url: `mailto:${email}`, type: "email" });
+  }
+  return fallback;
+}
 
 export function getProfile(): Profile {
   const file = path.join(process.cwd(), "data", "profile.yaml");
@@ -112,21 +220,24 @@ export function getProfile(): Profile {
   const hero = (d.hero ?? {}) as Dict;
   const about = (d.about ?? {}) as Dict;
 
+  const parsedIdentity: Identity = {
+    name: str(identity.name) ?? "Portfolio",
+    roles: strArr(identity.roles),
+    location: str(identity.location),
+    university: str(identity.university),
+    email: str(identity.email),
+  };
+  const parsedHero: Hero = {
+    headline: str(hero.headline),
+    subline: str(hero.subline),
+    github: str(hero.github),
+    linkedin: str(hero.linkedin),
+    resumePath: str(hero.resumePath) ?? "/resume.pdf",
+  };
+
   return {
-    identity: {
-      name: str(identity.name) ?? "Portfolio",
-      roles: strArr(identity.roles),
-      location: str(identity.location),
-      university: str(identity.university),
-      email: str(identity.email),
-    },
-    hero: {
-      headline: str(hero.headline),
-      subline: str(hero.subline),
-      github: str(hero.github),
-      linkedin: str(hero.linkedin),
-      resumePath: str(hero.resumePath) ?? "/resume.pdf",
-    },
+    identity: parsedIdentity,
+    hero: parsedHero,
     about: { paragraphs: strArr(about.paragraphs) },
     stack: dictArr(d.stack)
       .map((c) => ({
@@ -145,7 +256,7 @@ export function getProfile(): Profile {
         details: str(p.details),
         stack: strArr(p.stack),
         link: str(p.link),
-        image: str(p.image),
+        media: parseMedia(p, str(p.slug) ?? `project-${i + 1}`),
       }))
       .filter((p) => p.title.length > 0 && !isPlaceholder(p.title)),
     experience: dictArr(d.experience)
@@ -164,6 +275,13 @@ export function getProfile(): Profile {
         url: str(w.url),
       }))
       .filter((w) => w.title.length > 0),
+    socials: parseSocials(d, parsedHero, parsedIdentity.email),
+    navigation: dictArr(d.navigation)
+      .map((n) => ({
+        label: str(n.label) ?? "",
+        target: str(n.target) ?? "",
+      }))
+      .filter((n) => n.label.length > 0 && n.target.length > 0),
   };
 }
 
