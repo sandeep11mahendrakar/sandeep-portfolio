@@ -1,18 +1,32 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Manrope, Newsreader } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  IBM_Plex_Mono,
+  IBM_Plex_Sans,
+  Newsreader,
+} from "next/font/google";
 import { getProfile } from "@/lib/profile";
 import "./globals.css";
 
-const manrope = Manrope({
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
-  variable: "--font-manrope",
+  style: ["normal", "italic"],
+  variable: "--font-plex-sans",
   display: "swap",
 });
 
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
   variable: "--font-plex-mono",
   display: "swap",
 });
@@ -20,7 +34,7 @@ const plexMono = IBM_Plex_Mono({
 const newsreader = Newsreader({
   subsets: ["latin"],
   style: ["italic"],
-  weight: ["300", "400"],
+  weight: ["300", "400", "500"],
   variable: "--font-newsreader",
   display: "swap",
 });
@@ -54,7 +68,7 @@ export function generateMetadata(): Metadata {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#f8f5ec",
+  themeColor: "#f7f4ec",
 };
 
 export default function RootLayout({
@@ -65,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${plexMono.variable} ${newsreader.variable}`}
+      className={`${bricolage.variable} ${plexSans.variable} ${plexMono.variable} ${newsreader.variable}`}
     >
       <body className="font-sans">{children}</body>
     </html>

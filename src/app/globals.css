@@ -1,22 +1,31 @@
 @import "tailwindcss";
 
-@theme {
-  --color-paper: #f8f5ec;
-  --color-paper-deep: #efece1;
-  --color-paper-tint: rgb(117 136 106 / 0.14);
-  --color-ink: #34312b;
-  --color-muted: #75715f;
-  --color-line: rgb(59 56 49 / 0.12);
-  --color-moss: #7e9770;
-  --color-moss-deep: #647c57;
-  --color-haze: #8598b5;
-  --color-haze-deep: #5f7089;
-  --color-rose: #c99483;
-  --color-clay: #d95757;
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+:root {
+  --background: oklch(96.5% 0.012 85);
+  --foreground: oklch(24% 0.018 60);
+  --muted-foreground: oklch(48% 0.02 60);
+  --border: oklch(86% 0.014 75);
+  --ink: oklch(22% 0.02 60);
+  --cream: oklch(96.5% 0.012 85);
+  --coffee: oklch(55% 0.045 55);
+  --matcha: oklch(68% 0.1 135);
+  --clay: oklch(68% 0.075 45);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-coffee: var(--coffee);
+  --color-matcha: var(--matcha);
+  --color-clay: var(--clay);
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-editorial: var(--font-newsreader), Georgia, serif;
 }
 
 html {
@@ -30,43 +39,28 @@ html {
 }
 
 body {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
+  background-color: var(--background);
+  color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-body::before {
+.grain::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: 5;
   pointer-events: none;
-  background-image:
-    radial-gradient(46rem 40rem at 8% -8%, rgb(126 151 112 / 0.22), transparent 64%),
-    radial-gradient(48rem 42rem at 100% 22%, rgb(201 148 131 / 0.16), transparent 62%),
-    radial-gradient(52rem 44rem at 46% 112%, rgb(133 152 181 / 0.13), transparent 60%);
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgb(59 56 49 / 0.022) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(59 56 49 / 0.022) 1px, transparent 1px);
-  background-size: 76px 76px;
-  mask-image: linear-gradient(to bottom, black, transparent 160vh);
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 ::selection {
-  background-color: rgb(126 151 112 / 0.3);
+  background-color: oklch(68% 0.1 135 / 0.35);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-moss-deep);
+  outline: 2px solid var(--matcha);
   outline-offset: 3px;
 }
 

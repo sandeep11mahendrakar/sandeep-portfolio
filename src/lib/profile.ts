@@ -21,6 +21,7 @@ export interface Hero {
 export interface SkillItem {
   name: string;
   icon?: string;
+  mostUsed?: boolean;
 }
 
 export interface StackCategory {
@@ -84,6 +85,8 @@ export interface Profile {
   hero: Hero;
   about: { paragraphs: string[] };
   stack: StackCategory[];
+  stackIntro?: string;
+  stackAside?: string;
   featuredProject?: string;
   projects: Project[];
   experience: ExperienceEntry[];
@@ -122,7 +125,7 @@ function parseSkillItems(v: unknown): SkillItem[] {
     } else if (typeof entry === "object" && entry !== null && !Array.isArray(entry)) {
       const d = entry as Dict;
       const name = str(d.name);
-      if (name) out.push({ name, icon: str(d.icon) });
+      if (name) out.push({ name, icon: str(d.icon), mostUsed: d.mostUsed === true });
     }
   }
   return out;
@@ -265,6 +268,8 @@ export function getProfile(): Profile {
         items: parseSkillItems(c.items),
       }))
       .filter((c) => c.category.length > 0 && c.items.length > 0),
+    stackIntro: str(d.stackIntro),
+    stackAside: str(d.stackAside),
     featuredProject: str(d.featuredProject),
     projects: dictArr(d.projects)
       .map((p, i) => ({

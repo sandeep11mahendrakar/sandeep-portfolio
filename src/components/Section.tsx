@@ -7,12 +7,14 @@ export default function Section({
   eyebrow,
   title,
   heading,
+  description,
   children,
 }: {
   id: string;
   eyebrow?: string;
   title?: string;
   heading?: ReactNode;
+  description?: string;
   children: ReactNode;
 }) {
   return (
@@ -31,6 +33,11 @@ export default function Section({
               <h2 className="mt-4 font-display text-[clamp(2.25rem,5.5vw,4.25rem)] font-light leading-[1.05] tracking-[-0.03em] text-ink">
                 {heading ?? (title ? <Accent text={title} /> : null)}
               </h2>
+              {description && (
+                <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted">
+                  {description}
+                </p>
+              )}
             </Reveal>
           )}
           <Reveal delay={0.1}>

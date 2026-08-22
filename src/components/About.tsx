@@ -1,7 +1,6 @@
 import type { Profile } from "@/lib/profile";
 import Accent from "./Accent";
 import Reveal from "./Reveal";
-import Section from "./Section";
 import Squiggle from "./Squiggle";
 
 export default function About({ profile }: { profile: Profile }) {
@@ -20,50 +19,59 @@ export default function About({ profile }: { profile: Profile }) {
   }
 
   return (
-    <Section
-      id="about"
-      eyebrow="About"
-      heading={
-        <>
-          Beyond the{" "}
-          <span className="relative inline-block font-serif italic font-normal">
-            résumé.
-            <Squiggle className="text-moss" />
-          </span>
-        </>
-      }
-    >
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,380px)] lg:gap-16">
-        <div className="max-w-xl space-y-6">
-          {about.paragraphs.map((paragraph, i) => (
-            <Reveal key={i} delay={0.06 * i}>
-              <p className="text-lg leading-[1.75] text-ink/80 md:text-xl">
-                <Accent text={paragraph} />
-              </p>
-            </Reveal>
-          ))}
+    <section id="about" className="relative py-20 md:py-32 px-6 md:px-12">
+      <Reveal>
+        <div className="relative inline-block mb-16 md:mb-24">
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground/90">
+            Beyond the{" "}
+            <span className="font-editorial italic font-normal text-clay">résumé.</span>
+          </h2>
+          <div
+            aria-hidden
+            className="absolute -bottom-4 md:-bottom-6 left-0 right-0 pointer-events-none text-clay opacity-80"
+          >
+            <Squiggle />
+          </div>
+        </div>
+      </Reveal>
+
+      <div className="grid md:grid-cols-12 gap-16 items-start">
+        <div className="md:col-span-6 lg:col-span-5">
+          <Reveal>
+            <div className="text-xl md:text-[22px] leading-[1.8] text-foreground/85 font-light space-y-6">
+              {about.paragraphs.map((paragraph, i) => (
+                <p key={i}>
+                  <Accent text={paragraph} />
+                </p>
+              ))}
+            </div>
+          </Reveal>
         </div>
 
         {tableRows.length > 0 && (
-          <Reveal delay={0.12}>
-            <dl className="border border-line bg-paper/60 backdrop-blur-[1px]">
-              {tableRows.map(([key, value], i) => (
-                <div
-                  key={key}
-                  className={`grid grid-cols-[110px_minmax(0,1fr)] gap-4 px-5 py-4 ${
-                    i > 0 ? "border-t border-line" : ""
-                  }`}
-                >
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted pt-0.5">
-                    {key}
-                  </dt>
-                  <dd className="text-sm leading-relaxed text-ink/85">{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
+          <div className="md:col-span-6 lg:col-span-5 lg:col-start-8">
+            <Reveal delay={0.12}>
+              <dl className="border border-foreground/10 bg-background/40 backdrop-blur-sm">
+                {tableRows.map(([key, value], i) => (
+                  <div
+                    key={key}
+                    className={`flex items-center justify-between gap-6 px-6 py-4 ${
+                      i > 0 ? "border-t border-foreground/10" : ""
+                    }`}
+                  >
+                    <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                      {key}
+                    </dt>
+                    <dd className="text-sm md:text-base font-medium text-foreground/90 text-right">
+                      {value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+          </div>
         )}
       </div>
-    </Section>
+    </section>
   );
 }

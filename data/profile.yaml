@@ -19,18 +19,24 @@ about:
     - "I am a final-year B.Tech Computer Science student at PES University, Bengaluru, with hands-on work in natural language processing, computer vision, UI automation, and LLM-assisted systems."
     - "I build practical AI and software systems that connect models with real applications, including explainable sentiment analysis and automated web and mobile UI test generation."
 
+stackIntro: "Languages, models, and tooling used across machine-learning pipelines, UI automation, and everyday software projects."
+stackAside: "A snapshot of what I reach for when building ML systems and automation tooling."
+
 stack:
   - category: "Languages"
     items:
-      - "Python"
+      - name: "Python"
+        mostUsed: true
       - "C"
       - "JavaScript"
       - "SQL"
   - category: "AI / ML"
     items:
       - "NLTK"
-      - "TF-IDF"
-      - "scikit-learn"
+      - name: "TF-IDF"
+        mostUsed: true
+      - name: "scikit-learn"
+        mostUsed: true
       - "Logistic Regression"
       - "Naive Bayes"
       - "Random Forest"
@@ -38,18 +44,23 @@ stack:
       - "TensorFlow / Keras"
   - category: "Automation / Web"
     items:
-      - "Playwright"
+      - name: "Playwright"
+        mostUsed: true
       - "Appium"
-      - "Streamlit"
+      - name: "Streamlit"
+        mostUsed: true
       - "YOLO"
       - "OCR"
-      - "Gemini API"
+      - name: "Gemini API"
+        mostUsed: true
       - "Grok API"
   - category: "Tools / Systems"
     items:
-      - "Git"
+      - name: "Git"
+        mostUsed: true
       - "GitHub"
-      - "Linux"
+      - name: "Linux"
+        mostUsed: true
       - "Docker"
 
 featuredProject: "vision-ui-testing"
