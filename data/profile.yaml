@@ -1,54 +1,93 @@
 identity:
   name: "Sandeep Mahendrakar"
-  roles: ["AI/ML Engineer", "Software Engineer"]
+  roles:
+    - "AI/ML Engineer"
+    - "Software Engineer"
   location: "Bengaluru, India"
   university: "PES University · B.Tech Computer Science"
-  email: "[ADD EMAIL]"
+  email: "sandeepmahendrakar11@gmail.com"
 
 hero:
   headline: "I build intelligent systems end to end."
-  subline: >-
-    Computer Science student at PES University, Bengaluru, working across AI/ML,
-    software engineering, and Linux systems.
-  github: "[ADD GITHUB URL]"
-  linkedin: "[ADD LINKEDIN URL]"
+  subline: "Final-year Computer Science student at PES University working across NLP, computer vision, UI automation, and LLM-assisted test generation."
+  github: "https://github.com/sandeep11mahendrakar"
+  linkedin: "https://www.linkedin.com/in/sandeep-mahindrakar-336b972b9/"
   resumePath: "/resume.pdf"
 
 about:
   paragraphs:
-    - >-
-      Interested in AI/ML engineering and the systems underneath it — Linux,
-      GPUs, and the infrastructure that turns models into working software.
-    - "[ADD DETAILS — what you build, what you are exploring, how you work.]"
+    - "I am a final-year B.Tech Computer Science student at PES University, Bengaluru, with hands-on work in natural language processing, computer vision, UI automation, and LLM-assisted systems."
+    - "I build practical AI and software systems that connect models with real applications, including explainable sentiment analysis and automated web and mobile UI test generation."
 
 stack:
+  - category: "Languages"
+    items:
+      - "Python"
+      - "C"
+      - "JavaScript"
+      - "SQL"
   - category: "AI / ML"
-    items: ["[ADD ITEMS]"]
-  - category: "Software"
-    items: ["[ADD ITEMS]"]
-  - category: "Systems / Linux"
-    items: ["[ADD ITEMS]"]
-  - category: "Tools"
-    items: ["[ADD ITEMS]"]
+    items:
+      - "NLTK"
+      - "TF-IDF"
+      - "scikit-learn"
+      - "Logistic Regression"
+      - "Naive Bayes"
+      - "Random Forest"
+      - "LIME"
+      - "TensorFlow / Keras"
+  - category: "Automation / Web"
+    items:
+      - "Playwright"
+      - "Appium"
+      - "Streamlit"
+      - "YOLO"
+      - "OCR"
+      - "Gemini API"
+      - "Grok API"
+  - category: "Tools / Systems"
+    items:
+      - "Git"
+      - "GitHub"
+      - "Linux"
+      - "Docker"
 
 featuredProject: "vision-ui-testing"
 
 projects:
   - slug: "vision-ui-testing"
     number: 01
-    title: "Autonomous Vision-Based UI Testing System"
-    year: "[ADD YEAR]"
-    summary: "[ADD ONE-SENTENCE TECHNICAL DESCRIPTION]"
-    details: "[ADD PROJECT DETAILS — approach, architecture, challenges solved.]"
-    stack: ["[ADD STACK ITEMS]"]
-    link: "[ADD REPO OR LIVE URL]"
+    title: "AI-Assisted Test Case Generation for Mobile and Web UI Applications"
+    year: 2026
+    summary: "A dual-architecture system that generates structured test cases from web and mobile interfaces using structure-based and vision-based UI understanding."
+    details: "The system combines DOM/View Hierarchy extraction with a vision pipeline using YOLO and OCR on screenshots. Gemini and Grok APIs are used to generate structured JSON test cases, which are converted into executable Playwright and Appium scripts for web and Android workflows."
+    stack:
+      - "Python"
+      - "Node.js"
+      - "Playwright"
+      - "Appium"
+      - "YOLO"
+      - "Tesseract OCR"
+      - "Gemini API"
+      - "Grok API"
+    link: "https://github.com/sandeep11mahendrakar/capstone"
+
   - slug: "sentiment-analysis"
+    number: 02
     title: "Multi-Aspect Sentiment Analysis with Explainability"
-    year: "[ADD YEAR]"
-    summary: "[ADD ONE-SENTENCE TECHNICAL DESCRIPTION]"
-    details: "[ADD PROJECT DETAILS — approach, architecture, challenges solved.]"
-    stack: ["[ADD STACK ITEMS]"]
-    link: ""
+    year: 2026
+    summary: "An aspect-aware sentiment analysis application that goes beyond simple positive/negative classification and explains model predictions."
+    details: "Built an NLP pipeline for customer reviews using TF-IDF with Logistic Regression, Naive Bayes, and Random Forest models. Integrated LIME for feature-level explanations and deployed an interactive Streamlit dashboard for review analysis, model comparison, and explainability-driven inspection."
+    stack:
+      - "Python"
+      - "TF-IDF"
+      - "scikit-learn"
+      - "Logistic Regression"
+      - "Naive Bayes"
+      - "Random Forest"
+      - "LIME"
+      - "Streamlit"
+    link: "https://multi-aspect-sentiment-analysis-with-explainability-srgnqk7xcv.streamlit.app/"
 
 experience: []
 
