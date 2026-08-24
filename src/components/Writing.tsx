@@ -6,9 +6,9 @@ export default function Writing({ entries }: { entries: Profile["writing"] }) {
   if (entries.length === 0) return null;
 
   return (
-    <section id="writing" className="relative py-20 md:py-28 px-6 md:px-12">
+    <section id="writing" className="relative py-14 md:py-20 px-6 md:px-12">
       <Reveal>
-        <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-12 md:mb-16">
+        <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-8 md:mb-10">
           <h2 className="font-display text-5xl md:text-7xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4 w-fit">
             Articles
           </h2>

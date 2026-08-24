@@ -28,7 +28,7 @@ export default function SectionDots({ ids }: { ids: string[] }) {
   return (
     <nav
       aria-label="Sections"
-      className="fixed right-4 md:right-8 lg:right-12 top-1/2 -translate-y-1/2 z-[90] hidden md:flex flex-col gap-4"
+      className="fixed right-1.5 md:right-2 lg:right-3 top-1/2 -translate-y-1/2 z-[90] hidden md:flex flex-col gap-4"
     >
       {ids.map((id) => (
         <a

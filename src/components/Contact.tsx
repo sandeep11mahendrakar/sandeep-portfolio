@@ -7,14 +7,14 @@ export default function Contact({ profile }: { profile: Profile }) {
   const emailPlaceholder = !identity.email || isPlaceholder(identity.email);
 
   return (
-    <section id="contact" className="relative pt-20 md:pt-32 px-6 md:px-12">
+    <section id="contact" className="relative pt-14 md:pt-20 px-6 md:px-12">
       <Reveal>
-        <h2 className="font-display text-4xl md:text-6xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4 mb-12 md:mb-16 w-full">
+        <h2 className="font-display text-4xl md:text-6xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4 mb-8 md:mb-10 w-full">
           Contact Me
         </h2>
       </Reveal>
 
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-end pb-20 md:pb-28">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-end pb-14 md:pb-20">
         <Reveal delay={0.08}>
           <div className="relative">
             <p className="font-display text-[clamp(2.75rem,7vw,5.5rem)] font-light leading-[1.05] tracking-[-0.03em] text-foreground/90">

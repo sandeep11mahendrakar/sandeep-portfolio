@@ -49,6 +49,7 @@ export interface Project {
   year?: string;
   summary?: string;
   details?: string;
+  type?: string;
   stack: string[];
   link?: string;
   media?: ProjectMedia;
@@ -80,6 +81,13 @@ export interface WritingEntry {
   url?: string;
 }
 
+export interface CertificateEntry {
+  title: string;
+  issuer?: string;
+  year?: string;
+  url?: string;
+}
+
 export interface Profile {
   identity: Identity;
   hero: Hero;
@@ -91,6 +99,7 @@ export interface Profile {
   projects: Project[];
   experience: ExperienceEntry[];
   writing: WritingEntry[];
+  certificates: CertificateEntry[];
   socials: SocialLink[];
   navigation?: NavigationItem[];
 }
@@ -143,6 +152,7 @@ const EMPTY_PROFILE: Profile = {
   projects: [],
   experience: [],
   writing: [],
+  certificates: [],
   socials: [],
 };
 
@@ -279,6 +289,7 @@ export function getProfile(): Profile {
         year: typeof p.year === "number" ? String(p.year) : str(p.year),
         summary: str(p.summary),
         details: str(p.details),
+        type: str(p.type),
         stack: strArr(p.stack),
         link: str(p.link),
         media: parseMedia(p, str(p.slug) ?? `project-${i + 1}`),
@@ -300,6 +311,14 @@ export function getProfile(): Profile {
         url: str(w.url),
       }))
       .filter((w) => w.title.length > 0),
+    certificates: dictArr(d.certificates)
+      .map((c) => ({
+        title: str(c.title) ?? "",
+        issuer: str(c.issuer),
+        year: typeof c.year === "number" ? String(c.year) : str(c.year),
+        url: str(c.url),
+      }))
+      .filter((c) => c.title.length > 0 && !isPlaceholder(c.title)),
     socials: parseSocials(d, parsedHero, parsedIdentity.email),
     navigation: dictArr(d.navigation)
       .map((n) => ({

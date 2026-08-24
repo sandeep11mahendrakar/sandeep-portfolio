@@ -1,6 +1,8 @@
 import About from "@/components/About";
+import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 import Cursor from "@/components/Cursor";
+import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Nav from "@/components/Nav";
@@ -24,7 +26,9 @@ export default function Home() {
     about: profile.about.paragraphs.length > 0,
     skills: profile.stack.length > 0,
     work: profile.projects.length > 0,
+    experience: profile.experience.length > 0,
     writing: profile.writing.length > 0,
+    certificates: profile.certificates.length > 0,
     featured: !!featured,
     contact: true,
   };
@@ -34,7 +38,13 @@ export default function Home() {
     { label: "About", href: "#about" },
     ...(profile.stack.length > 0 ? [{ label: "Skills", href: "#skills" }] : []),
     ...(profile.projects.length > 0 ? [{ label: "Work", href: "#work" }] : []),
+    ...(profile.experience.length > 0
+      ? [{ label: "Experience", href: "#experience" }]
+      : []),
     ...(profile.writing.length > 0 ? [{ label: "Writing", href: "#writing" }] : []),
+    ...(profile.certificates.length > 0
+      ? [{ label: "Certificates", href: "#certificates" }]
+      : []),
     { label: "Contact", href: "#contact" },
   ];
 
@@ -125,9 +135,17 @@ export default function Home() {
           />
         )}
 
-        <Projects projects={profile.projects} />
+        <Projects
+          projects={profile.projects.filter(
+            (project) => project.slug !== profile.featuredProject
+          )}
+        />
+
+        <Experience entries={profile.experience} />
 
         <Writing entries={profile.writing} />
+
+        <Certificates entries={profile.certificates} />
 
         <Contact profile={profile} />
       </div>

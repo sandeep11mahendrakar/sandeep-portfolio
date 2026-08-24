@@ -41,7 +41,13 @@ stack:
       - "Naive Bayes"
       - "Random Forest"
       - "LIME"
-      - "TensorFlow / Keras"
+      - name: "TensorFlow / Keras"
+        icon: "tensorflow"
+        mostUsed: true
+      - "DistilBERT"
+      - "QLoRA Fine-tuning"
+      - "RAG · FAISS · ChromaDB"
+      - "Prompt Engineering"
   - category: "Automation / Web"
     items:
       - name: "Playwright"
@@ -54,6 +60,7 @@ stack:
       - name: "Gemini API"
         mostUsed: true
       - "Grok API"
+      - "OpenAI API"
   - category: "Tools / Systems"
     items:
       - name: "Git"
@@ -62,6 +69,9 @@ stack:
       - name: "Linux"
         mostUsed: true
       - "Docker"
+      - "Bash"
+      - "Pandas"
+      - "NumPy"
 
 featuredProject: "vision-ui-testing"
 
@@ -70,6 +80,7 @@ projects:
     number: 01
     title: "AI-Assisted Test Case Generation for Mobile and Web UI Applications"
     year: 2026
+    type: "Project"
     summary: "A dual-architecture system that generates structured test cases from web and mobile interfaces using structure-based and vision-based UI understanding."
     details: "The system combines DOM/View Hierarchy extraction with a vision pipeline using YOLO and OCR on screenshots. Gemini and Grok APIs are used to generate structured JSON test cases, which are converted into executable Playwright and Appium scripts for web and Android workflows."
     stack:
@@ -91,6 +102,7 @@ projects:
     number: 02
     title: "Multi-Aspect Sentiment Analysis with Explainability"
     year: 2026
+    type: "Project"
     summary: "An aspect-aware sentiment analysis application that goes beyond simple positive/negative classification and explains model predictions."
     details: "Built an NLP pipeline for customer reviews using TF-IDF with Logistic Regression, Naive Bayes, and Random Forest models. Integrated LIME for feature-level explanations and deployed an interactive Streamlit dashboard for review analysis, model comparison, and explainability-driven inspection."
     stack:
@@ -103,6 +115,45 @@ projects:
       - "LIME"
       - "Streamlit"
     link: "https://multi-aspect-sentiment-analysis-with-explainability-srgnqk7xcv.streamlit.app/"
+
+  - slug: "llm-long-term-memory"
+    number: 03
+    title: "Character-Driven LLM with Long-Term Memory"
+    year: 2026
+    type: "Project"
+    summary: "Fine-tuning Llama 3.2 3B with QLoRA and building a RAG-based long-term memory layer using ChromaDB, enabling a conversational agent to retain context across sessions."
+    stack:
+      - "Python"
+      - "Llama 3.2"
+      - "QLoRA"
+      - "ChromaDB"
+      - "RAG"
+
+  - slug: "rag-answer-engine"
+    number: 04
+    title: "RAG-based Answer Engine"
+    year: 2026
+    type: "Project"
+    summary: "A hybrid retrieval pipeline combining BM25 and FAISS with DistilBERT-based intent classification and cross-encoder reranking for accurate, source-grounded answers."
+    stack:
+      - "Python"
+      - "BM25"
+      - "FAISS"
+      - "DistilBERT"
+      - "RAG"
+
+  - slug: "linux-kernel-bug"
+    number: 05
+    title: "Linux Kernel Bug Report — btusb/btmtk MT7921"
+    year: 2026
+    type: "Open Source Contribution"
+    summary: "Diagnosed a Bluetooth audio failure on Fedora Linux (PipeWire/WirePlumber/BlueZ on a MediaTek MT7921 chipset) and filed an upstream kernel bug — confirmed accurate by the maintainer, with a fix pending in an upcoming release."
+    stack:
+      - "Linux"
+      - "Fedora"
+      - "BlueZ"
+      - "PipeWire"
+    link: "https://bugzilla.kernel.org/show_bug.cgi?id=221706"
 
 socials:
   - name: "GitHub"
@@ -121,6 +172,24 @@ socials:
 experience: []
 
 writing: []
+
+certificates:
+  - title: "Data Fundamentals"
+    issuer: "IBM SkillsBuild"
+    year: "March 2025"
+    url: "https://www.credly.com/badges/ff86de20-a965-45a3-9a38-3a2449690888/linked_in_profile"
+  - title: "Data Science"
+    issuer: "IBM Skills Network"
+    year: "Jul 2025 – Jan 2026"
+    url: "https://courses.gfg.skillsnetwork.site/certificates/14de7faa82ea4e6096b05c34d4eb1e8f"
+  - title: "Data Analysis with Python"
+    issuer: "IBM Skills Network"
+    year: "Jul 2025 – Jan 2026"
+    url: "https://courses.gfg.skillsnetwork.site/certificates/e685f90361c54983b554d085be0e4be5"
+  - title: "Python 101 for Data Science"
+    issuer: "IBM Skills Network"
+    year: "Jul 2025 – Jan 2026"
+    url: "https://courses.gfg.skillsnetwork.site/certificates/e6ef6c90b8004ee5baa7ffc207fc7483"
 
 navigation:
   - label: "HOME"

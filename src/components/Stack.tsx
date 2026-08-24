@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import type { StackCategory } from "@/lib/profile";
 import Reveal from "./Reveal";
-import { getTechIcon } from "./TechIcon";
+import TechIcon from "./TechIcon";
 
 const CATEGORY_GLYPHS: Record<string, string> = {
   all: "∗",
@@ -53,8 +53,8 @@ export default function Stack({
   ];
 
   return (
-    <section id="skills" className="relative py-20 md:py-28 px-6 md:px-12">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 md:mb-16">
+    <section id="skills" className="relative py-14 md:py-20 px-6 md:px-12">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-8 md:mb-10">
         <Reveal>
           <h2 className="font-display text-4xl md:text-6xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4">
             The tools <span className="font-editorial italic font-normal text-clay">I build</span> with
@@ -135,31 +135,23 @@ export default function Stack({
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 border-t border-l border-foreground/20">
-            {visibleItems.map((item, i) => {
-              const Icon = getTechIcon(item.name);
-              return (
-                <Reveal
-                  key={`${active}-${item.name}`}
-                  delay={Math.min(i * 0.03, 0.3)}
-                  className="border-r border-b border-foreground/20"
+            {visibleItems.map((item, i) => (
+              <Reveal
+                key={`${active}-${item.name}`}
+                delay={Math.min(i * 0.03, 0.3)}
+                className="border-r border-b border-foreground/20"
+              >
+                <div
+                  data-cursor="hover"
+                  className="flex items-center gap-3 md:gap-4 p-4 h-full transition-colors duration-300 hover:bg-foreground/5"
                 >
-                  <div
-                    data-cursor="hover"
-                    className="flex items-center gap-3 md:gap-4 p-4 h-full transition-colors duration-300 hover:bg-foreground/5"
-                  >
-                    <span
-                      aria-hidden
-                      className="w-10 h-10 md:w-11 md:h-11 rounded-[4px] border border-foreground/25 flex flex-shrink-0 items-center justify-center bg-transparent text-lg md:text-xl font-mono font-medium text-foreground/80"
-                    >
-                      {Icon ? <Icon /> : item.name.charAt(0).toUpperCase()}
-                    </span>
-                    <span className="text-sm md:text-[15px] text-foreground/90 truncate">
-                      {item.name}
-                    </span>
-                  </div>
-                </Reveal>
-              );
-            })}
+                  <TechIcon item={item} />
+                  <span className="text-sm md:text-[15px] text-foreground/90 truncate">
+                    {item.name}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
           </div>
 
           {aside && (

@@ -18,9 +18,9 @@ export default function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-28 px-6 py-20 md:px-12 md:py-32">
+    <section id={id} className="scroll-mt-28 px-6 py-14 md:px-12 md:py-20">
       {(eyebrow || title || heading) && (
-        <div className="mb-12 md:mb-20">
+        <div className="mb-8 md:mb-12">
           {eyebrow && (
             <Reveal>
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-moss-deep md:text-xs">
