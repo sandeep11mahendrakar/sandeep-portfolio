@@ -21,8 +21,8 @@ export default function About({ profile }: { profile: Profile }) {
   return (
     <section id="about" className="relative py-14 md:py-20 px-6 md:px-12">
       <Reveal>
-        <div className="relative inline-block mb-10 md:mb-14">
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground/90">
+        <div className="relative inline-block mb-8 md:mb-12">
+          <h2 className="font-display text-4xl md:text-5xl font-light tracking-tight text-foreground/90">
             Beyond the{" "}
             <span className="font-editorial italic font-normal text-clay">résumé.</span>
           </h2>

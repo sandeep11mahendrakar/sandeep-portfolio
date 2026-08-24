@@ -54,9 +54,9 @@ export default function Stack({
 
   return (
     <section id="skills" className="relative py-14 md:py-20 px-6 md:px-12">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-8 md:mb-10">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-8 md:mb-12">
         <Reveal>
-          <h2 className="font-display text-4xl md:text-6xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4">
             The tools <span className="font-editorial italic font-normal text-clay">I build</span> with
           </h2>
         </Reveal>
@@ -103,6 +103,9 @@ export default function Stack({
             <div className="max-w-xs">
               {intro && (
                 <p className="text-base leading-relaxed text-foreground/75">{intro}</p>
+              )}
+              {aside && (
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{aside}</p>
               )}
               {mostUsed.length > 0 && (
                 <>
@@ -153,12 +156,6 @@ export default function Stack({
               </Reveal>
             ))}
           </div>
-
-          {aside && (
-            <Reveal delay={0.1}>
-              <p className="mt-8 text-sm text-muted-foreground">{aside}</p>
-            </Reveal>
-          )}
         </div>
       </div>
     </section>

@@ -9,10 +9,10 @@ export default function Writing({ entries }: { entries: Profile["writing"] }) {
     <section id="writing" className="relative py-14 md:py-20 px-6 md:px-12">
       <Reveal>
         <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-8 md:mb-10">
-          <h2 className="font-display text-5xl md:text-7xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4 w-fit">
+          <h2 className="font-display text-4xl md:text-5xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4 w-fit">
             Articles
           </h2>
-          <p className="text-3xl md:text-4xl font-light text-foreground/90 md:text-right">
+          <p className="text-2xl md:text-3xl font-light text-foreground/90 md:text-right">
             small essays,{" "}
             <span className="font-editorial italic text-clay">occasionally</span>.
           </p>

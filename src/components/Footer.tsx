@@ -10,20 +10,22 @@ export default function Footer({ profile }: { profile: Profile }) {
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
             Elsewhere
           </p>
-          <ul className="mt-4 space-y-2">
-            {socials.map((social) => (
-              <li key={social.name}>
-                <a
-                  href={social.url}
-                  target={social.type === "external" ? "_blank" : undefined}
-                  rel={social.type === "external" ? "noreferrer noopener" : undefined}
-                  data-cursor="hover"
-                  className="text-sm font-medium text-foreground/90 transition-colors hover:text-matcha"
-                >
-                  {social.name} {social.type === "external" ? "↗" : ""}
-                </a>
-              </li>
-            ))}
+          <ul className="mt-4 flex flex-wrap gap-x-7 gap-y-2">
+            {socials
+              .filter((social) => social.type === "external")
+              .map((social) => (
+                <li key={social.name}>
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    data-cursor="hover"
+                    className="text-sm font-medium text-foreground/90 transition-colors hover:text-matcha"
+                  >
+                    {social.name} ↗
+                  </a>
+                </li>
+              ))}
           </ul>
         </div>
 

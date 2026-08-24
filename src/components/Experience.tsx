@@ -12,8 +12,8 @@ export default function Experience({
   return (
     <section id="experience" className="relative py-14 md:py-20 px-6 md:px-12">
       <Reveal>
-        <div className="relative inline-block mb-8 md:mb-10">
-          <h2 className="font-display text-5xl md:text-7xl font-light tracking-tight text-foreground/90">
+        <div className="relative inline-block mb-8 md:mb-12">
+          <h2 className="font-display text-4xl md:text-5xl font-light tracking-tight text-foreground/90">
             Where I&rsquo;ve{" "}
             <span className="font-editorial italic font-normal text-clay">been.</span>
           </h2>

@@ -111,9 +111,7 @@ export default function Hero({
           </p>
         </div>
         <div className="text-right leading-relaxed">
-          {universityParts.map((part) => (
-            <p key={part}>{part}</p>
-          ))}
+          <p>{universityParts.join(" · ")}</p>
         </div>
       </FadeUp>
 

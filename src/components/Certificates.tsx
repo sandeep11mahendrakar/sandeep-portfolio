@@ -10,13 +10,13 @@ export default function Certificates({
   if (entries.length === 0) return null;
 
   return (
-    <section id="certificates" className="relative py-12 md:py-16 px-6 md:px-12">
+    <section id="certificates" className="relative py-14 md:py-20 px-6 md:px-12">
       <Reveal>
-        <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6 md:mb-8">
-          <h2 className="font-display text-3xl md:text-4xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-3 w-fit">
+        <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-8 md:mb-12">
+          <h2 className="font-display text-4xl md:text-5xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-3 w-fit">
             Certificates
           </h2>
-          <p className="text-xl md:text-2xl font-light text-foreground/90 md:text-right">
+          <p className="text-2xl md:text-3xl font-light text-foreground/90 md:text-right">
             always{" "}
             <span className="font-editorial italic text-clay">learning.</span>
           </p>
@@ -35,7 +35,7 @@ export default function Certificates({
                     target="_blank"
                     rel="noreferrer noopener"
                     data-cursor="view"
-                    className="group inline-flex items-baseline gap-3 py-2.5 text-foreground/90 hover:text-matcha transition-colors duration-300"
+                    className="group flex w-full items-baseline gap-3 py-2.5 text-foreground/90 hover:text-matcha transition-colors duration-300"
                   >
                     <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground w-7 shrink-0 tabular-nums">
                       {String(i + 1).padStart(2, "0")}
@@ -46,6 +46,11 @@ export default function Certificates({
                     {entry.issuer && (
                       <span className="hidden md:inline font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
                         · {entry.issuer}
+                      </span>
+                    )}
+                    {entry.year && (
+                      <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground whitespace-nowrap">
+                        {entry.year}
                       </span>
                     )}
                     <svg
@@ -64,13 +69,18 @@ export default function Certificates({
                     </svg>
                   </a>
                 ) : (
-                  <span className="inline-flex items-baseline gap-3 py-2.5 text-foreground/90">
+                  <span className="flex w-full items-baseline gap-3 py-2.5 text-foreground/90">
                     <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground w-7 shrink-0 tabular-nums">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="font-display text-base md:text-lg font-light tracking-tight">
                       {entry.title}
                     </span>
+                    {entry.year && (
+                      <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground whitespace-nowrap">
+                        {entry.year}
+                      </span>
+                    )}
                   </span>
                 )}
               </li>

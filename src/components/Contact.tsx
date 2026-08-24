@@ -3,13 +3,13 @@ import { isPlaceholder } from "@/lib/profile";
 import Reveal from "./Reveal";
 
 export default function Contact({ profile }: { profile: Profile }) {
-  const { identity, socials } = profile;
+  const { identity } = profile;
   const emailPlaceholder = !identity.email || isPlaceholder(identity.email);
 
   return (
     <section id="contact" className="relative pt-14 md:pt-20 px-6 md:px-12">
       <Reveal>
-        <h2 className="font-display text-4xl md:text-6xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4 mb-8 md:mb-10 w-full">
+        <h2 className="font-display text-4xl md:text-5xl font-light tracking-tight text-foreground/90 border-b-2 border-foreground/30 pb-4 mb-8 md:mb-12 w-full">
           Contact Me
         </h2>
       </Reveal>
@@ -71,24 +71,9 @@ export default function Contact({ profile }: { profile: Profile }) {
                 {identity.email}
               </a>
             )}
-            {socials.filter((s) => s.type === "external").length > 0 && (
-              <div className="flex flex-wrap gap-x-8 gap-y-3">
-                {socials
-                  .filter((s) => s.type === "external")
-                  .map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      data-cursor="hover"
-                      className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      {social.label} ↗
-                    </a>
-                  ))}
-              </div>
-            )}
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              All links live in the footer ↓
+            </p>
           </div>
         </Reveal>
       </div>
