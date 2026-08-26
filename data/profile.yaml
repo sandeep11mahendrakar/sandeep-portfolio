@@ -101,7 +101,7 @@ projects:
       - "FastAPI"
       - "Hugging Face"
       - "Selective Prediction"
-    link: "https://huggingface.co/"
+    link: "https://huggingface.co/sandeep1103/lilly-fashion-muse-doc-gated"
 
   - slug: "huggingface-model-releases"
     number: 03
@@ -109,14 +109,14 @@ projects:
     year: 2026
     type: "Model Release"
     summary: "Released two open-weight NLP models from Lilly · Fashion Muse: a confidence-gated sentiment model and an aspect-based sentiment analysis model."
-    details: "The release packages the trained models for reproducible use outside the project: one document-gated review-sentiment model designed to abstain on ambiguous inputs, and one ABSA model for aspect-level sentiment analysis. Both are released as open-weight models on Hugging Face."
+    details: "The release packages the trained Lilly · Fashion Muse models for reproducible use outside the project. The Document-Gated model handles review sentiment with confidence-aware abstention, while the ABSA model provides aspect-level sentiment analysis. Both models are publicly released on Hugging Face."
     stack:
       - "DistilBERT"
       - "ABSA"
       - "Hugging Face"
       - "Selective Prediction"
       - "Python"
-    link: "https://huggingface.co/"
+    link: "https://huggingface.co/sandeep1103/lilly-fashion-muse-doc-gated"
 
   - slug: "rag-answer-engine"
     number: 04
