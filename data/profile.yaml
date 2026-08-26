@@ -73,14 +73,7 @@ projects:
     year: 2026
     type: "Featured Project"
     summary: "An autonomous web UI testing system that exposes browser exploration, test generation, execution, and evidence collection as MCP tools for AI agents."
-    details: "Built as an independent rebuild and major extension of the capstone team's original architecture. I took the initial structure-based and vision-based direction as a starting point, redesigned the architecture, and rebuilt the implementation into a unified end-to-end system that connects live UI understanding, exploration, test generation, execution, and verdict evidence."
-    highlights:
-      - "5 MCP tools exposed over stdio JSON-RPC"
-      - "40-site evaluation across e-commerce, banking, food delivery, and news"
-      - "98 functional tests generated and executed"
-      - "56 passed / 42 failed — with every result classified"
-      - "48.7% average fusion-attributable coverage; 100% on some real sites"
-      - "Independent adversarial audit completed; verification ceiling measured with seeded bug mutation"
+    details: "Built as an independent rebuild and major extension of the capstone team's original architecture. I took the initial structure-based and vision-based direction as a starting point, redesigned the architecture, and rebuilt the implementation into a unified end-to-end system that connects live UI understanding, exploration, test generation, execution, and verdict evidence. Evaluated across 40 real websites with 98 functional tests generated and executed, 56 passed and 42 failed, all results classified; fusion-attributable coverage averaged 48.7% and reached 100% on some real sites. The system also underwent an independent adversarial audit and seeded-bug mutation study."
     stack:
       - "Python"
       - "Node.js"
@@ -100,12 +93,7 @@ projects:
     year: 2026
     type: "Project"
     summary: "An aspect-aware fashion review sentiment system that combines sentiment prediction, confidence gating, and explainable review analysis."
-    details: "Built an end-to-end review intelligence pipeline that scores fashion reviews on a 1–10 scale, predicts sentiment with an UNSURE / MIXED state for ambiguous cases, and supports aspect-aware analysis. The project includes a tuned DistilBERT model, an ABSA model, confidence-based selective prediction, and a FastAPI + JavaScript interface for single-review and batch-CSV scoring."
-    highlights:
-      - "91.2% accuracy at 86.2% coverage with confidence-gated prediction"
-      - "78.5% macro-F1 at the selected threshold vs. 85.5% ungated accuracy"
-      - "Review audit found 28% of nominally neutral samples were genuinely neutral"
-      - "Released 2 open-weight models on Hugging Face: gated sentiment + ABSA"
+    details: "Built an end-to-end review intelligence pipeline that scores fashion reviews on a 1–10 scale, predicts sentiment with an UNSURE / MIXED state for ambiguous cases, and supports aspect-aware analysis. The project includes a tuned DistilBERT model, an ABSA model, confidence-based selective prediction, and a FastAPI + JavaScript interface for single-review and batch-CSV scoring. Achieved 91.2% accuracy at 86.2% coverage with confidence gating, with 78.5% macro-F1 at the selected threshold versus 85.5% ungated accuracy."
     stack:
       - "Python"
       - "DistilBERT"
@@ -115,8 +103,23 @@ projects:
       - "Selective Prediction"
     link: "https://huggingface.co/"
 
-  - slug: "rag-answer-engine"
+  - slug: "huggingface-model-releases"
     number: 03
+    title: "Open-Source Model Releases — Hugging Face"
+    year: 2026
+    type: "Model Release"
+    summary: "Released two open-weight NLP models from Lilly · Fashion Muse: a confidence-gated sentiment model and an aspect-based sentiment analysis model."
+    details: "The release packages the trained models for reproducible use outside the project: one document-gated review-sentiment model designed to abstain on ambiguous inputs, and one ABSA model for aspect-level sentiment analysis. Both are released as open-weight models on Hugging Face."
+    stack:
+      - "DistilBERT"
+      - "ABSA"
+      - "Hugging Face"
+      - "Selective Prediction"
+      - "Python"
+    link: "https://huggingface.co/"
+
+  - slug: "rag-answer-engine"
+    number: 04
     title: "RAG-based Answer Engine"
     year: 2026
     type: "Project · In Progress"
@@ -131,7 +134,7 @@ projects:
       - "Cross-Encoder"
 
   - slug: "linux-kernel-bug"
-    number: 04
+    number: 05
     title: "Linux Kernel Bug Report — btusb/btmtk MT7921"
     year: 2026
     type: "Open Source Contribution"
