@@ -8,59 +8,50 @@ identity:
   email: "sandeepmahendrakar11@gmail.com"
 
 hero:
-  headline: "I build intelligent systems at the intersection of *AI/ML,* software engineering, and *automation.*"
-  subline: "Currently working across NLP, computer vision, UI automation, and LLM-assisted test generation."
+  headline: "I build AI systems that connect models with real software and automation."
+  subline: "Focused on applied AI/ML, autonomous UI testing, retrieval systems, and practical model deployment."
   github: "https://github.com/sandeep11mahendrakar"
   linkedin: "https://www.linkedin.com/in/sandeep-mahindrakar-336b972b9/"
+  portfolio: "https://sandeep-portfolio-three-dun.vercel.app/"
   resumePath: "/resume.pdf"
 
 about:
   paragraphs:
-    - "I am a final-year B.Tech Computer Science student at PES University, Bengaluru, with hands-on work in natural language processing, computer vision, UI automation, and LLM-assisted systems."
-    - "I build practical AI and software systems that connect models with real applications, including explainable sentiment analysis and automated web and mobile UI test generation."
+    - "I am a final-year B.Tech Computer Science student at PES University, Bengaluru, building applied AI systems across machine learning, computer vision, retrieval, and automation."
+    - "My strongest work is in turning AI models into usable systems: autonomous web UI testing exposed as MCP tools for AI agents, aspect-aware sentiment analysis, and retrieval pipelines designed for grounded answers."
 
-stackIntro: "Languages, models, and tooling used across machine-learning pipelines, UI automation, and everyday software projects."
-stackAside: "A snapshot of what I reach for when building ML systems and automation tooling."
+stackIntro: "A focused set of tools I use for applied AI, automation, and software engineering."
+stackAside: "Core technologies behind my projects and experiments."
 
 stack:
   - category: "Languages"
     items:
       - name: "Python"
         mostUsed: true
-      - "C"
       - "JavaScript"
+      - "C"
       - "SQL"
   - category: "AI / ML"
     items:
-      - "NLTK"
-      - name: "TF-IDF"
-        mostUsed: true
       - name: "scikit-learn"
         mostUsed: true
-      - "Logistic Regression"
-      - "Naive Bayes"
-      - "Random Forest"
-      - "LIME"
-      - name: "TensorFlow / Keras"
-        icon: "tensorflow"
-        mostUsed: true
+      - "TF-IDF"
       - "DistilBERT"
-      - "QLoRA Fine-tuning"
-      - "RAG · FAISS · ChromaDB"
-      - "Prompt Engineering"
-  - category: "Automation / Web"
+      - "QLoRA"
+      - name: "RAG"
+        mostUsed: true
+      - "FAISS"
+      - "BM25"
+      - "ChromaDB"
+      - "LIME"
+  - category: "Automation / Vision"
     items:
       - name: "Playwright"
         mostUsed: true
       - "Appium"
-      - name: "Streamlit"
-        mostUsed: true
       - "YOLO"
-      - "OCR"
-      - name: "Gemini API"
-        mostUsed: true
-      - "Grok API"
-      - "OpenAI API"
+      - "Tesseract OCR"
+      - "MCP"
   - category: "Tools / Systems"
     items:
       - name: "Git"
@@ -70,84 +61,81 @@ stack:
         mostUsed: true
       - "Docker"
       - "Bash"
-      - "Pandas"
-      - "NumPy"
+      - "Streamlit"
+      - "FastAPI"
 
 featuredProject: "vision-ui-testing"
 
 projects:
   - slug: "vision-ui-testing"
     number: 01
-    title: "AI-Assisted Test Case Generation for Mobile and Web UI Applications"
+    title: "Autonomous-web-UI-testing-as-MCP-tools-for-AI-agents"
     year: 2026
-    type: "Project"
-    summary: "A dual-architecture system that generates structured test cases from web and mobile interfaces using structure-based and vision-based UI understanding."
-    details: "The system combines DOM/View Hierarchy extraction with a vision pipeline using YOLO and OCR on screenshots. Gemini and Grok APIs are used to generate structured JSON test cases, which are converted into executable Playwright and Appium scripts for web and Android workflows."
+    type: "Featured Project"
+    summary: "An autonomous web UI testing system that exposes browser exploration, test generation, execution, and evidence collection as MCP tools for AI agents."
+    details: "Built as an independent rebuild and major extension of the capstone team's original architecture. I took the initial structure-based and vision-based direction as a starting point, redesigned the architecture, and rebuilt the implementation into a unified end-to-end system that connects live UI understanding, exploration, test generation, execution, and verdict evidence."
+    highlights:
+      - "5 MCP tools exposed over stdio JSON-RPC"
+      - "40-site evaluation across e-commerce, banking, food delivery, and news"
+      - "98 functional tests generated and executed"
+      - "56 passed / 42 failed — with every result classified"
+      - "48.7% average fusion-attributable coverage; 100% on some real sites"
+      - "Independent adversarial audit completed; verification ceiling measured with seeded bug mutation"
     stack:
       - "Python"
       - "Node.js"
+      - "MCP"
       - "Playwright"
-      - "Appium"
       - "YOLO"
       - "Tesseract OCR"
-      - "Gemini API"
-      - "Grok API"
     link: "https://github.com/sandeep11mahendrakar/capstone"
     media:
       type: "image"
       src: "/projects/vision-ui-testing/preview.png"
-      alt: "Vision pipeline detecting and labeling UI elements on a live web page"
+      alt: "Autonomous web UI testing pipeline exposed as MCP tools for AI agents"
 
   - slug: "sentiment-analysis"
     number: 02
-    title: "Multi-Aspect Sentiment Analysis with Explainability"
+    title: "Lilly · Fashion Muse"
     year: 2026
     type: "Project"
-    summary: "An aspect-aware sentiment analysis application that goes beyond simple positive/negative classification and explains model predictions."
-    details: "Built an NLP pipeline for customer reviews using TF-IDF with Logistic Regression, Naive Bayes, and Random Forest models. Integrated LIME for feature-level explanations and deployed an interactive Streamlit dashboard for review analysis, model comparison, and explainability-driven inspection."
+    summary: "An aspect-aware fashion review sentiment system that combines sentiment prediction, confidence gating, and explainable review analysis."
+    details: "Built an end-to-end review intelligence pipeline that scores fashion reviews on a 1–10 scale, predicts sentiment with an UNSURE / MIXED state for ambiguous cases, and supports aspect-aware analysis. The project includes a tuned DistilBERT model, an ABSA model, confidence-based selective prediction, and a FastAPI + JavaScript interface for single-review and batch-CSV scoring."
+    highlights:
+      - "91.2% accuracy at 86.2% coverage with confidence-gated prediction"
+      - "78.5% macro-F1 at the selected threshold vs. 85.5% ungated accuracy"
+      - "Review audit found 28% of nominally neutral samples were genuinely neutral"
+      - "Released 2 open-weight models on Hugging Face: gated sentiment + ABSA"
     stack:
       - "Python"
-      - "TF-IDF"
-      - "scikit-learn"
-      - "Logistic Regression"
-      - "Naive Bayes"
-      - "Random Forest"
-      - "LIME"
-      - "Streamlit"
-    link: "https://multi-aspect-sentiment-analysis-with-explainability-srgnqk7xcv.streamlit.app/"
-
-  - slug: "llm-long-term-memory"
-    number: 03
-    title: "Character-Driven LLM with Long-Term Memory"
-    year: 2026
-    type: "Project"
-    summary: "Fine-tuning Llama 3.2 3B with QLoRA and building a RAG-based long-term memory layer using ChromaDB, enabling a conversational agent to retain context across sessions."
-    stack:
-      - "Python"
-      - "Llama 3.2"
-      - "QLoRA"
-      - "ChromaDB"
-      - "RAG"
+      - "DistilBERT"
+      - "ABSA"
+      - "FastAPI"
+      - "Hugging Face"
+      - "Selective Prediction"
+    link: "https://huggingface.co/"
 
   - slug: "rag-answer-engine"
-    number: 04
+    number: 03
     title: "RAG-based Answer Engine"
     year: 2026
-    type: "Project"
-    summary: "A hybrid retrieval pipeline combining BM25 and FAISS with DistilBERT-based intent classification and cross-encoder reranking for accurate, source-grounded answers."
+    type: "Project · In Progress"
+    summary: "A retrieval pipeline being developed around hybrid BM25 + FAISS search, intent classification, and reranking for grounded answers."
+    details: "Currently developing a hybrid retrieval system that combines lexical and vector retrieval, DistilBERT-based intent classification, and cross-encoder reranking to improve relevance before answer generation."
     stack:
       - "Python"
+      - "RAG"
       - "BM25"
       - "FAISS"
       - "DistilBERT"
-      - "RAG"
+      - "Cross-Encoder"
 
   - slug: "linux-kernel-bug"
-    number: 05
+    number: 04
     title: "Linux Kernel Bug Report — btusb/btmtk MT7921"
     year: 2026
     type: "Open Source Contribution"
-    summary: "Diagnosed a Bluetooth audio failure on Fedora Linux (PipeWire/WirePlumber/BlueZ on a MediaTek MT7921 chipset) and filed an upstream kernel bug — confirmed accurate by the maintainer, with a fix pending in an upcoming release."
+    summary: "Diagnosed a Fedora Bluetooth audio failure and traced it to a PipeWire/WirePlumber/BlueZ configuration issue around the MediaTek MT7921, then reported a related upstream kernel issue."
     stack:
       - "Linux"
       - "Fedora"
@@ -164,13 +152,16 @@ socials:
     label: "LINKEDIN"
     url: "https://www.linkedin.com/in/sandeep-mahindrakar-336b972b9/"
     type: "external"
+  - name: "Portfolio"
+    label: "PORTFOLIO"
+    url: "https://sandeep-portfolio-three-dun.vercel.app/"
+    type: "external"
   - name: "Email"
     label: "EMAIL"
     url: "mailto:sandeepmahendrakar11@gmail.com"
     type: "email"
 
 experience: []
-
 writing: []
 
 certificates:
