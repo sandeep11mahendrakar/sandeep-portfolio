@@ -159,6 +159,10 @@ modelReleases:
       url: "https://huggingface.co/sandeep1103/lilly-fashion-muse-absa"
 
 socials:
+  - name: "Email"
+    label: "EMAIL"
+    url: "mailto:sandeepmahendrakar11@gmail.com"
+    type: "email"
   - name: "GitHub"
     label: "GITHUB"
     url: "https://github.com/sandeep11mahendrakar"
@@ -167,14 +171,6 @@ socials:
     label: "LINKEDIN"
     url: "https://www.linkedin.com/in/sandeep-mahindrakar-336b972b9/"
     type: "external"
-  - name: "Portfolio"
-    label: "PORTFOLIO"
-    url: "https://sandeep-portfolio-three-dun.vercel.app/"
-    type: "external"
-  - name: "Email"
-    label: "EMAIL"
-    url: "mailto:sandeepmahendrakar11@gmail.com"
-    type: "email"
 
 experience: []
 
