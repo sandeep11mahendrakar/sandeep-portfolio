@@ -8,8 +8,8 @@ identity:
   email: "sandeepmahendrakar11@gmail.com"
 
 hero:
-  headline: "I build AI systems that connect models with real software and automation."
-  subline: "Focused on applied AI/ML, autonomous UI testing, retrieval systems, and practical model deployment."
+  headline: "I build *autonomous AI systems* — agents that test software, models that understand language, and the *automation* connecting them to the real world."
+  subline: "Currently building an MCP server that lets AI agents test websites on their own, and open-source NLP models for aspect-level sentiment analysis."
   github: "https://github.com/sandeep11mahendrakar"
   linkedin: "https://www.linkedin.com/in/sandeep-mahindrakar-336b972b9/"
   portfolio: "https://sandeep-portfolio-three-dun.vercel.app/"
@@ -17,41 +17,55 @@ hero:
 
 about:
   paragraphs:
-    - "I am a final-year B.Tech Computer Science student at PES University, Bengaluru, building applied AI systems across machine learning, computer vision, retrieval, and automation."
-    - "My strongest work is in turning AI models into usable systems: autonomous web UI testing exposed as MCP tools for AI agents, aspect-aware sentiment analysis, and retrieval pipelines designed for grounded answers."
+    - "I'm a final-year B.Tech Computer Science student at PES University, Bengaluru, building AI systems that don't just predict — they act. My work spans agentic web-testing frameworks, calibrated NLP models, and the infrastructure that connects language models to real tools."
+    - "Most recently, I built an MCP server that lets AI agents autonomously test websites by reading both DOM structure and screenshots, and released two open-weight sentiment models — one that scores whole reviews, one that reasons per-aspect — after finding a single model couldn't do both well."
 
-stackIntro: "A focused set of tools I use for applied AI, automation, and software engineering."
-stackAside: "Core technologies behind my projects and experiments."
+stackIntro: "Languages, models, and tooling used across machine-learning pipelines, UI automation, and everyday software projects."
+stackAside: "A snapshot of what I reach for when building ML systems and automation tooling."
 
 stack:
   - category: "Languages"
     items:
       - name: "Python"
         mostUsed: true
-      - "JavaScript"
       - "C"
+      - "JavaScript"
       - "SQL"
   - category: "AI / ML"
     items:
+      - "NLTK"
+      - name: "TF-IDF"
+        mostUsed: true
       - name: "scikit-learn"
         mostUsed: true
-      - "TF-IDF"
-      - "DistilBERT"
-      - "QLoRA"
-      - name: "RAG"
-        mostUsed: true
-      - "FAISS"
-      - "BM25"
-      - "ChromaDB"
+      - "Logistic Regression"
+      - "Naive Bayes"
+      - "Random Forest"
       - "LIME"
-  - category: "Automation / Vision"
+      - name: "TensorFlow / Keras"
+        icon: "tensorflow"
+        mostUsed: true
+      - name: "DistilBERT"
+        mostUsed: true
+      - "QLoRA Fine-tuning"
+      - "RAG · FAISS · ChromaDB"
+      - "Confidence Calibration / Selective Prediction"
+  - category: "Automation / Web"
     items:
       - name: "Playwright"
         mostUsed: true
       - "Appium"
+      - name: "MCP (Model Context Protocol)"
+        mostUsed: true
+      - "FastAPI"
+      - name: "Streamlit"
+        mostUsed: true
       - "YOLO"
-      - "Tesseract OCR"
-      - "MCP"
+      - "OCR"
+      - name: "Gemini API"
+        mostUsed: true
+      - "Grok API"
+      - "OpenAI API"
   - category: "Tools / Systems"
     items:
       - name: "Git"
@@ -61,8 +75,8 @@ stack:
         mostUsed: true
       - "Docker"
       - "Bash"
-      - "Streamlit"
-      - "FastAPI"
+      - "Pandas"
+      - "NumPy"
 
 featuredProject: "vision-ui-testing"
 
@@ -70,81 +84,80 @@ projects:
   - slug: "vision-ui-testing"
     number: 01
     title: "Autonomous-web-UI-testing-as-MCP-tools-for-AI-agents"
-    year: 2026
-    type: "Featured Project"
-    summary: "An autonomous web UI testing system that exposes browser exploration, test generation, execution, and evidence collection as MCP tools for AI agents."
-    details: "Built as an independent rebuild and major extension of the capstone team's original architecture. I took the initial structure-based and vision-based direction as a starting point, redesigned the architecture, and rebuilt the implementation into a unified end-to-end system that connects live UI understanding, exploration, test generation, execution, and verdict evidence. Evaluated across 40 real websites with 98 functional tests generated and executed, 56 passed and 42 failed, all results classified; fusion-attributable coverage averaged 48.7% and reached 100% on some real sites. The system also underwent an independent adversarial audit and seeded-bug mutation study."
+    year: "2025 – Present"
+    type: "Personal Project"
+    summary: "An MCP server that lets AI agents autonomously test any website. Two independent explorers — one reading the DOM, one reading screenshots via YOLO + OCR — merge into grounded, live-executed test cases, with every result classified pass/fail."
+    details: "Validated across a 40-site evaluation campaign (demo apps to real e-commerce, banking, docs, and news platforms): 98 fusion tests generated and live-executed (56 pass / 42 fail, all classified), with fusion-attributable coverage averaging 48.7% and reaching 100% on some real sites — plus an independent adversarial audit where every headline number recomputes from raw artifacts. The idea originated from discussions with the capstone team; the architecture was independently redesigned and the entire codebase, evaluation, and audit were built solo."
     stack:
       - "Python"
       - "Node.js"
-      - "MCP"
+      - "MCP (Model Context Protocol)"
       - "Playwright"
+      - "Appium"
       - "YOLO"
       - "Tesseract OCR"
-    link: "https://github.com/sandeep11mahendrakar/capstone"
+      - "Gemini API"
+      - "Grok API"
+    link: "https://github.com/sandeep11mahendrakar/Autonomous-web-UI-testing-as-MCP-tools-for-AI-agents"
     media:
       type: "image"
       src: "/projects/vision-ui-testing/preview.png"
-      alt: "Autonomous web UI testing pipeline exposed as MCP tools for AI agents"
+      alt: "Vision pipeline detecting and labeling UI elements on a live web page"
 
   - slug: "sentiment-analysis"
     number: 02
-    title: "Lilly · Fashion Muse"
-    year: 2026
-    type: "Project"
-    summary: "An aspect-aware fashion review sentiment system that combines sentiment prediction, confidence gating, and explainable review analysis."
-    details: "Built an end-to-end review intelligence pipeline that scores fashion reviews on a 1–10 scale, predicts sentiment with an UNSURE / MIXED state for ambiguous cases, and supports aspect-aware analysis. The project includes a tuned DistilBERT model, an ABSA model, confidence-based selective prediction, and a FastAPI + JavaScript interface for single-review and batch-CSV scoring. Achieved 91.2% accuracy at 86.2% coverage with confidence gating, with 78.5% macro-F1 at the selected threshold versus 85.5% ungated accuracy."
+    title: "Lilly Fashion Muse"
+    year: "2026 – Present"
+    type: "Personal Project"
+    summary: "A review-sentiment engine that scores product reviews 1–10 and abstains (\"UNSURE / MIXED\") instead of guessing on ambiguous text. A separate aspect-based model scores quality, price, and fit independently per sentence."
+    details: "Confidence-gated DistilBERT reaches 91.2% accuracy at 86.2% coverage (macro-F1 .715) by abstaining under a calibrated threshold rather than forcing a guess. A 199-review human-labeling study found inter-annotator agreement was near-chance (κ ≈ 0.15), which shaped the decision to prioritize calibration over raw accuracy. Two open-weight models — doc-level and aspect-based (ABSA) — are released on the Hugging Face Hub, alongside a FastAPI + JS webapp for single-review and batch-CSV scoring."
     stack:
       - "Python"
       - "DistilBERT"
-      - "ABSA"
+      - "Hugging Face Transformers"
       - "FastAPI"
-      - "Hugging Face"
-      - "Selective Prediction"
-    link: "https://huggingface.co/sandeep1103/lilly-fashion-muse-doc-gated"
-
-  - slug: "huggingface-model-releases"
-    number: 03
-    title: "Open-Source Model Releases — Hugging Face"
-    year: 2026
-    type: "Model Release"
-    summary: "Released two open-weight NLP models from Lilly · Fashion Muse: a confidence-gated sentiment model and an aspect-based sentiment analysis model."
-    details: "The release packages the trained Lilly · Fashion Muse models for reproducible use outside the project. The Document-Gated model handles review sentiment with confidence-aware abstention, while the ABSA model provides aspect-level sentiment analysis. Both models are publicly released on Hugging Face."
-    stack:
-      - "DistilBERT"
-      - "ABSA"
-      - "Hugging Face"
-      - "Selective Prediction"
-      - "Python"
-    link: "https://huggingface.co/sandeep1103/lilly-fashion-muse-doc-gated"
+      - "JavaScript"
+      - "scikit-learn"
+      - "LIME"
+    link: "https://github.com/sandeep11mahendrakar/Lilly-Fashion-Muse"
 
   - slug: "rag-answer-engine"
-    number: 04
+    number: 03
     title: "RAG-based Answer Engine"
-    year: 2026
-    type: "Project · In Progress"
-    summary: "A retrieval pipeline being developed around hybrid BM25 + FAISS search, intent classification, and reranking for grounded answers."
-    details: "Currently developing a hybrid retrieval system that combines lexical and vector retrieval, DistilBERT-based intent classification, and cross-encoder reranking to improve relevance before answer generation."
+    year: "2026 – Present"
+    type: "Project"
+    summary: "A hybrid retrieval pipeline combining BM25 and FAISS with DistilBERT-based intent classification and cross-encoder reranking for accurate, source-grounded answers."
     stack:
       - "Python"
-      - "RAG"
       - "BM25"
       - "FAISS"
       - "DistilBERT"
-      - "Cross-Encoder"
+      - "RAG"
 
   - slug: "linux-kernel-bug"
-    number: 05
+    number: 04
     title: "Linux Kernel Bug Report — btusb/btmtk MT7921"
     year: 2026
     type: "Open Source Contribution"
-    summary: "Diagnosed a Fedora Bluetooth audio failure and traced it to a PipeWire/WirePlumber/BlueZ configuration issue around the MediaTek MT7921, then reported a related upstream kernel issue."
+    summary: "Diagnosed a Bluetooth audio failure on Fedora Linux (PipeWire/WirePlumber/BlueZ on a MediaTek MT7921 chipset) and filed an upstream kernel bug — confirmed accurate by the maintainer, with a fix pending in an upcoming release."
     stack:
       - "Linux"
       - "Fedora"
       - "BlueZ"
       - "PipeWire"
     link: "https://bugzilla.kernel.org/show_bug.cgi?id=221706"
+
+modelReleases:
+  sectionTitle: "Open-Source Model Releases"
+  platform: "Hugging Face"
+  note: "Two models because whole-review tone and per-aspect judgment are different tasks with different signal — one model would conflate them and dilute aspect-specific accuracy, so each is trained, evaluated, and released separately."
+  items:
+    - title: "Lilly Fashion Muse — Doc-Level (Gated)"
+      description: "DistilBERT model for whole-review sentiment (1–10 score); abstains under a calibrated confidence threshold instead of forcing a guess."
+      url: "https://huggingface.co/sandeep1103/lilly-fashion-muse-doc-gated"
+    - title: "Lilly Fashion Muse — ABSA"
+      description: "Separate aspect-conditioned model scoring quality / price / fit independently per sentence, trained on consensus-filtered pairs."
+      url: "https://huggingface.co/sandeep1103/lilly-fashion-muse-absa"
 
 socials:
   - name: "GitHub"
@@ -165,6 +178,7 @@ socials:
     type: "email"
 
 experience: []
+
 writing: []
 
 certificates:
