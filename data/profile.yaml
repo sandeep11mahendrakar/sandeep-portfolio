@@ -12,7 +12,6 @@ hero:
   subline: "Currently building an MCP server that lets AI agents test websites on their own, and open-source NLP models for aspect-level sentiment analysis."
   github: "https://github.com/sandeep11mahendrakar"
   linkedin: "https://www.linkedin.com/in/sandeep-mahindrakar-336b972b9/"
-  #portfolio: "https://sandeep-portfolio-three-dun.vercel.app/"
   resumePath: "/resume.pdf"
 
 about:
